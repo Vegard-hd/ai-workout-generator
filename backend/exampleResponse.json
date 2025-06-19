@@ -1,0 +1,87 @@
+[
+  {
+    "duration": 10,
+    "zone": 1,
+    "description": "Warm-up. Easy spinning to get the blood flowing."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Gradually increase cadence and resistance."
+  },
+  {
+    "duration": 5,
+    "zone": 3,
+    "description": "Further increase cadence and resistance. Prepare for Threshold intervals."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 1. Maintain a sustainable but challenging pace, just below your lactate threshold. Focus on smooth pedal strokes."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Recovery spin. Lower cadence and resistance to allow for partial recovery."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 2. Same intensity as Interval 1. Maintain focus and power."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Recovery spin."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 3. Don't lose focus. Maintain Threshold Power."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Recovery spin."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 4. Same intensity as Interval 1. Maintain focus and power."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Recovery spin."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 5. Don't lose focus. Maintain Threshold Power."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Recovery spin."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 6. Same intensity as Interval 1. Maintain focus and power."
+  },
+  {
+    "duration": 5,
+    "zone": 2,
+    "description": "Recovery spin."
+  },
+  {
+    "duration": 15,
+    "zone": 4,
+    "description": "Threshold Interval 7. Don't lose focus. Maintain Threshold Power."
+  },
+  {
+    "duration": 10,
+    "zone": 1,
+    "description": "Cool-down. Easy spinning to gradually reduce intensity."
+  }
+]
