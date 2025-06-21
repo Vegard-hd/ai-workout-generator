@@ -12,10 +12,12 @@
     "@tailwindcss/vite": "^4.1.8",
     "@tanstack/react-query": "^5.80.7",
     "preact": "^10.26.5",
+    "react-router-dom": "^7.6.2",
     "tailwindcss": "^4.1.8"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.1",
+    "@types/react-router-dom": "^5.3.3",
     "daisyui": "^5.0.43",
     "vite": "^6.3.5"
   }

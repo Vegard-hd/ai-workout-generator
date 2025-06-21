@@ -15,7 +15,7 @@
     "@babel/preset-env": "^7.27.2",
     "@eslint/js": "^9.28.0",
     "@types/bun": "latest",
-    "@types/express": "^5.0.2",
+    "@types/express": "^5.0.3",
     "@types/jest": "^29.5.14",
     "babel-jest": "^30.0.0",
     "eslint": "^9.28.0",
@@ -32,12 +32,14 @@
   },
   "dependencies": {
     "@google/genai": "^1.4.0",
+    "@types/mongoose": "^5.11.97",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "http-errors": "^2.0.0",
     "lint-staged": "^16.1.2",
+    "mongoose": "^8.16.0",
     "morgan": "^1.10.0"
   },
   "lint-staged": {

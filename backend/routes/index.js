@@ -2,6 +2,9 @@ import { Router } from "express";
 const router = Router();
 
 import GeminiService from "../services/GeminiService";
+import { WorkoutModel } from "../models/WorkoutModel";
+const workoutModel = new WorkoutModel();
+import { parseTrainingData } from "../functions/parseTrainingData";
 
 /* async function createDelay(timer = 2500) {
   const myPromise = new Promise((resolve, reject) => {
@@ -16,58 +19,83 @@ import GeminiService from "../services/GeminiService";
   return await myPromise;
 } */
 
-router.post("/generateworkout", async (req, res, next) => {
+router.get("/workout", async (req, res, next) => {
   try {
-    // await createDelay();
-    // 1. Extract and validate workout options from the request body
+    const workouts = "";
+    res.json(workouts);
+  } catch (error) {
+    next(error);
+  }
+});
+router.get("/workout/:id", async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const workoutData = await workoutModel.getWorkout({ _id: id });
+    console.dir(workoutData);
+    res.json(workoutData);
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/workout", async (req, res, next) => {
+  try {
     const { activity, duration, focus, freshness, motivation } = req.body;
-    console.log(req.body);
-    // Basic validation (you might want to add more robust validation)
+
     if (!activity || !duration || !focus || !freshness || !motivation) {
       return res
         .status(400)
         .json({ error: "Missing required workout options" });
     }
-    const geminiAiResult = await GeminiService.generateWorkout(req.body);
-
-    // For now, let's return a mock workout plan
-    // const geminiAiResult = await exampleRes.text();
-
-    // 4. Send the generated workout back to the client
+    // const geminiAiResult = await GeminiService.generateWorkout(req.body);
+    // console.log(geminiAiResult);
+    const mockResult = [
+      {
+        duration: 5,
+        zone: 1,
+        description: "Easy warm-up, gentle pedaling.",
+      },
+      {
+        duration: 5,
+        zone: 2,
+        description: "Light spinning, focusing on smooth pedal strokes.",
+      },
+      {
+        duration: 5,
+        zone: 1,
+        description: "Active recovery, very light resistance.",
+      },
+      {
+        duration: 5,
+        zone: 2,
+        description: "Increase cadence slightly, maintain low resistance.",
+      },
+    ];
     res.header("Content-Type: application/json");
-    const parseTrainingData = (trainingData = []) => {
-      function getSumOfObj(trainingData = [], zoneKey) {
-        return trainingData
-          .filter((e) => e.zone === zoneKey)
-          .reduce(
-            (accumulator, currentValue) => accumulator + currentValue.duration,
-            0,
-          );
-      }
 
-      const sum = trainingData.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.duration,
-        0,
-      );
-
-      return {
-        totalDuration: sum,
-        totalZ1: getSumOfObj(trainingData, 1),
-        totalZ2: getSumOfObj(trainingData, 2),
-        totalZ3: getSumOfObj(trainingData, 3),
-        totalZ4: getSumOfObj(trainingData, 4),
-        totalZ5: getSumOfObj(trainingData, 5),
-      };
-    };
-    console.log("geminiAIResult is ... ", geminiAiResult);
-    const workoutDuration = parseTrainingData(geminiAiResult);
-    res.json({
-      workout: JSON.stringify(geminiAiResult),
-      workoutDuration: workoutDuration,
-    }); // Replace mockWorkoutPlan with 'workoutPlan' from Gemini
+    const workoutDuration = await parseTrainingData(mockResult);
+    return await workoutModel
+      .createWorkout({
+        workout: JSON.stringify(mockResult),
+        duration: JSON.stringify(workoutDuration),
+        title: "generate a better title with gemini later",
+      })
+      .then((data) => {
+        return res.status(201).json({ success: true, id: data._id });
+      })
+      .catch((err) => {
+        console.warn(err);
+        return res.status(400).json({ success: false, id: null });
+      });
+    /* 
+    1. insert into mongodb
+    2. return the mongoID + 201
+    2.5 redirect the client to /workout/:id 
+    3. client fetch(/workout/:id)
+    
+    */
   } catch (error) {
     console.error("Error generating workout:", error);
-    // Pass the error to the Express error handler
     next(error);
   }
 });

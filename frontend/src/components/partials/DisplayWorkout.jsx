@@ -4,6 +4,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import { TrainingPlanTimeline } from "./TrainingPlanTimeline";
+import { useNavigate } from "react-router-dom";
 
 export function DisplayWorkout({ workoutData }) {
   const activity = workoutData?.activity ?? "cycling";
@@ -11,11 +12,11 @@ export function DisplayWorkout({ workoutData }) {
   const focus = workoutData?.focus ?? "recovery";
   const freshness = workoutData?.freshness ?? "Fully Recovered";
   const motivation = workoutData?.motivation ?? "Motivated";
-
+  const navigate = useNavigate();
   const { isPending, error, data } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      fetch("http://localhost:3008/api/generateworkout", {
+      fetch("http://localhost:3008/api/workout", {
         method: "POST",
         body: `{"activity":"${activity}","duration":${Number.parseInt(
           duration
@@ -53,6 +54,8 @@ export function DisplayWorkout({ workoutData }) {
     );
 
   if (error) return "An error has occurred: " + error.message;
+
+  return navigate(`/workout/${data?.id}`);
 
   const workoutArr = JSON.parse(data.workout);
   return (

@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 export function TrainingPlanTimeline({ blocks, totalDuration }) {
   const getColorForZone = (zone) => {
     const colors = {
@@ -20,7 +21,7 @@ export function TrainingPlanTimeline({ blocks, totalDuration }) {
           return (
             <div
               key={index}
-              className="h-full flex items-center justify-center text-center"
+              className="tooltip h-full flex items-center justify-center text-center"
               style={{
                 width: `${widthPercentage}%`,
                 backgroundColor: block.color || getColorForZone(block.zone),
