@@ -1,5 +1,16 @@
 import { useState } from "preact/hooks";
-export function TrainingPlanTimeline({ blocks, totalDuration }) {
+import { useNavigate } from "react-router-dom";
+import { LikeButton } from "./LikeButton";
+export function TrainingPlanTimeline({
+  blocks,
+  totalDuration,
+  details,
+  title,
+}) {
+  const navigate = useNavigate();
+  const [isHovered, setIsHovered] = useState(false);
+  const location = window.location.pathname.split("/").at(-1);
+
   const getColorForZone = (zone) => {
     const colors = {
       1: "#6B7280", // gray-500
@@ -10,10 +21,34 @@ export function TrainingPlanTimeline({ blocks, totalDuration }) {
     };
     return colors[zone] || "#D1D5DB"; // Default gray-300
   };
-
   return (
     <>
-      <div className=" flex place-self-center w-full lg:w-4/5 h-20 rounded overflow-hidden mb-10  ">
+      <h1 className="text-center text-xl sm:text-3xl xl:text-5xl p-8 text-nowrap">
+        {title}
+      </h1>
+      <ul className="list-none text-center space-y-2">
+        <li>
+          <span className="font-semibold">Activity:</span>{" "}
+          {details.activity ?? "N/A"}
+        </li>
+        <li>
+          <span className="font-semibold">Duration:</span>{" "}
+          {details.duration ?? "N/A"}
+        </li>
+        <li>
+          <span className="font-semibold">Focus:</span> {details.focus ?? "N/A"}
+        </li>
+        <li>
+          <span className="font-semibold">Freshness:</span>{" "}
+          {details.freshness ?? "N/A"}
+        </li>
+        <li>
+          <span className="font-semibold">Motivation:</span>{" "}
+          {details.motivation ?? "N/A"}
+        </li>
+      </ul>
+
+      <div className=" flex place-self-center w-11/12  lg:w-4/5 h-20 rounded overflow-hidden mb-10 mt-10 ">
         {blocks.map((block, index) => {
           // Calculate percentage width based on duration
           const widthPercentage = (block.duration / totalDuration) * 100;
@@ -39,6 +74,22 @@ export function TrainingPlanTimeline({ blocks, totalDuration }) {
           );
         })}
       </div>
+      <LikeButton workoutId={location} />
+      <button
+        onMouseOver={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onClick={() => navigate("/")}
+        style={{ cursor: "pointer" }}
+        className={`
+          flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
+          bg-primary text-primary-content rounded-full ${
+            isHovered ? "bg-success text-success-content" : ""
+          }
+          `}
+        type="button" // Change to type="button" to prevent form submission if it's inside a form
+      >
+        Generate a new workout!
+      </button>
     </>
   );
 }

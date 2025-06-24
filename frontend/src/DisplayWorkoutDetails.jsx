@@ -1,6 +1,7 @@
 import { TrainingPlanTimeline } from "./components/partials/TrainingPlanTimeline";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+
 export function DisplayWorkoutDetails() {
   const { workoutId } = useParams();
   const { data, isLoading, error } = useQuery({
@@ -42,9 +43,16 @@ export function DisplayWorkoutDetails() {
 
   const workoutArr = JSON.parse(data.workout);
   const durationObj = JSON.parse(data.duration);
+  const detailsObj = JSON.parse(data?.details ?? null);
+  const workoutTitle = JSON.parse(data?.title ?? "no title");
   return (
     <section className=" ">
-      <TrainingPlanTimeline blocks={workoutArr} totalDuration={durationObj} />
+      <TrainingPlanTimeline
+        blocks={workoutArr}
+        totalDuration={durationObj?.totalDuration}
+        details={detailsObj}
+        title={workoutTitle}
+      />
     </section>
   );
 }

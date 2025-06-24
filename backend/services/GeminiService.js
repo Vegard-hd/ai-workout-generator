@@ -43,6 +43,35 @@ The response should start with '[' and end with ']' with no additional text.
       throw new Error(error?.message);
     }
   }
+  async generateWorkoutName() {
+    try {
+      const prompt = `Generate a random unique name for a workout. The name should be funny and does not have to make sense. It should always be two words bound togheter with a "-". Please respond ONLY with one name`;
+      const response = await GeminiService.ai.models
+        .generateContent({
+          model: "gemini-2.0-flash",
+          contents: prompt,
+          config: { maxOutputTokens: 100, temperature: 1 },
+        })
+        .catch((e) => {
+          console.warn(e);
+          throw new Error(
+            `Failed to generate workout data with gemini AI. Error: 
+            ${e?.message ?? "no message"}`,
+          );
+        });
+      if (!response.text || response.text.length === 0) {
+        console.warn(
+          "Throwing error in GeminiService.generateWorkout ... no error message",
+        );
+        throw new Error("Failed to generate workout data with gemini AI.");
+      }
+      return response.text;
+    } catch (error) {
+      console.warn(error);
+
+      throw new Error(error?.message);
+    }
+  }
 }
 
 export default new GeminiService();

@@ -55,15 +55,5 @@ export function DisplayWorkout({ workoutData }) {
 
   if (error) return "An error has occurred: " + error.message;
 
-  return navigate(`/workout/${data?.id}`);
-
-  const workoutArr = JSON.parse(data.workout);
-  return (
-    <section className=" ">
-      <TrainingPlanTimeline
-        blocks={workoutArr}
-        totalDuration={data.workoutDuration.totalDuration}
-      />
-    </section>
-  );
+  return navigate(`/workouts/${data?.id}`);
 }

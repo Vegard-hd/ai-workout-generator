@@ -15,6 +15,8 @@ const WorkoutSchema = new Schema({
   title: { type: String, required: true },
   workout: { type: String, required: true },
   duration: { type: String, required: true },
+  details: { type: String, required: false },
+  likes: { type: Number, required: true, default: 0 },
   // owner: { type: Schema.Types.ObjectId, ref: "User", required: true },
   private: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
@@ -35,6 +37,7 @@ export class WorkoutModel {
     title: string;
     workout: string;
     duration: string;
+    details: string;
   }) {
     try {
       const workout = new MongooseWorkoutModel({
@@ -70,5 +73,19 @@ export class WorkoutModel {
     } catch (error) {
       throw error;
     }
+  }
+  async updateLikes(id: string) {
+    return MongooseWorkoutModel.findByIdAndUpdate(
+      id,
+      { $inc: { likes: 1 } },
+      { new: true }, // returns the updated document
+    );
+  }
+  async decrementLikes(id: string) {
+    return MongooseWorkoutModel.findByIdAndUpdate(
+      id,
+      { $inc: { likes: -1 } },
+      { new: true }, // returns the updated document
+    );
   }
 }

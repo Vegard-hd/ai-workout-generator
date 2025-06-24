@@ -11,7 +11,10 @@ render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/workout/:workoutId" element={<DisplayWorkoutDetails />} />
+        <Route
+          path="/workouts/:workoutId"
+          element={<DisplayWorkoutDetails />}
+        />
       </Routes>
     </BrowserRouter>
   </QueryClientProvider>,

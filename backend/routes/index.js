@@ -38,6 +38,45 @@ router.get("/workout/:id", async (req, res, next) => {
   }
 });
 
+router.post("/like", async (req, res, next) => {
+  try {
+    const { workoutId } = req.body;
+    console.log("workoutid is ... ", typeof workoutId?.workoutId);
+    if (typeof workoutId?.workoutId !== "string") {
+      throw new Error("The workout id must be a valid string ");
+    }
+    return await workoutModel
+      .updateLikes(workoutId?.workoutId)
+      .then((data) => {
+        console.dir(data);
+        return res.status(201).json({ success: true });
+      })
+      .catch((err) => {
+        console.warn(err);
+        return res.status(400).json({ success: false });
+      });
+  } catch (error) {
+    next(error);
+  }
+});
+
+router.post("/unlike", async (req, res, next) => {
+  try {
+    const { workoutId } = req.body;
+    return await workoutModel
+      .decrementLikes(workoutId)
+      .then((data) => {
+        return res.status(201).json({ data: JSON.parse(data) });
+      })
+      .catch((err) => {
+        console.warn(err);
+        return res.status(400).json({ data: false });
+      });
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post("/workout", async (req, res, next) => {
   try {
     const { activity, duration, focus, freshness, motivation } = req.body;
@@ -47,7 +86,20 @@ router.post("/workout", async (req, res, next) => {
         .status(400)
         .json({ error: "Missing required workout options" });
     }
+    const workoutDetilsObj = {
+      activity: activity,
+      duration: duration,
+      focus: focus,
+      freshness: freshness,
+      motivation: motivation,
+    };
     // const geminiAiResult = await GeminiService.generateWorkout(req.body);
+
+    const workoutName = await GeminiService.generateWorkoutName().then((data) =>
+      data.trim(),
+    );
+    console.log(workoutName);
+
     // console.log(geminiAiResult);
     const mockResult = [
       {
@@ -78,7 +130,8 @@ router.post("/workout", async (req, res, next) => {
       .createWorkout({
         workout: JSON.stringify(mockResult),
         duration: JSON.stringify(workoutDuration),
-        title: "generate a better title with gemini later",
+        title: JSON.stringify(workoutName),
+        details: JSON.stringify(workoutDetilsObj),
       })
       .then((data) => {
         return res.status(201).json({ success: true, id: data._id });
