@@ -41,11 +41,5 @@
     "lint-staged": "^16.1.2",
     "mongoose": "^8.16.0",
     "morgan": "^1.10.0"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   }
 }
