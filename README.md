@@ -78,7 +78,7 @@ workout-generator-ai/
    ```env
    MONGO_CONN_STRING=mongodb://localhost:27017/workout-generator
    GEMINI_KEY=your_gemini_api_key_here
-   PORT=3000
+   PORT=3008
 
    ```
 
@@ -106,10 +106,10 @@ workout-generator-ai/
 
 ## 🔧 API Endpoints
 
-- `POST /api/workouts` - Generate a new workout
-- `GET /api/workouts/:id` - Get workout details
-- `PATCH /api/workouts/:id/like` - Increment workout likes
-- `PATCH /api/workouts/:id/unlike` - Decrement workout likes
+- `POST http://localhost:3008/api/workouts` - Generate a new workout
+- `GET http://localhost:3008/api/workouts/:id` - Get workout details
+- `POST http://localhost:3008/api/workouts/:id/like` - Increment workout likes
+- `POST http://localhost:3008/api/workouts/:id/unlike` - Decrement workout likes
 
 ## 🤝 Contributing
 
