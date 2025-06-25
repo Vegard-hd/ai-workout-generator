@@ -6,7 +6,7 @@ export function LikeButton() {
   const [isLikeBtnHovered, setIsLikeBtnHovered] = useState(false);
   const likeMutation = useMutation({
     mutationFn: async () => {
-      const res = await fetch("http://backend:3008/api/like", {
+      const res = await fetch("https://backend:3008/api/like", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ workoutId }),

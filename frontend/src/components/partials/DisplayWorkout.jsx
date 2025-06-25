@@ -16,7 +16,7 @@ export function DisplayWorkout({ workoutData }) {
   const { isPending, error, data } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      fetch("http://backend:3008/api/workout", {
+      fetch("https://backend:3008/api/workout", {
         method: "POST",
         body: `{"activity":"${activity}","duration":${Number.parseInt(
           duration
