@@ -15,7 +15,6 @@ export function DisplayWorkoutDetails() {
       }),
     enabled: !!workoutId, // only run if workoutID is present
   });
-  console.warn("meta.env VITE API URL is .... ", import.meta.env.VITE_API_URL);
   if (isLoading)
     return (
       <>

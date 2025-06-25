@@ -10,7 +10,6 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=${NODE_ENV}
-      - VITE_API_URL=${VITE_API_URL}
       - VITE_BACKEND_API_URL=${VITE_BACKEND_API_URL}
     depends_on:
       - backend
@@ -25,6 +24,7 @@ services:
       - ./backend:/app
       - /app/node_modules
     environment:
+      - CORS_ORIGIN=${CORS_ORIGIN}
       - PORT=${PORT}
       - NODE_ENV=${NODE_ENV}
       - MONGO_CONN_STRING=${MONGO_CONN_STRING}
