@@ -7,7 +7,7 @@ export function DisplayWorkoutDetails() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["workout", workoutId],
     queryFn: () =>
-      fetch(`localhost:3008/api/workout/${workoutId}`).then((res) => {
+      fetch(`http://localhost:3008/api/workout/${workoutId}`).then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
       }),
