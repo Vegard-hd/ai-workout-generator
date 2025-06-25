@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [tailwindcss(), preact()],
   server: {
     allowedHosts: [
-      "my-public-apps-aiworkoutgenerator-lpwjh8-0cee82-51-68-234-12.traefik.me",
+      "https://my-public-apps-aiworkoutgenerator-lpwjh8-0cee82-51-68-234-12.traefik.me",
       "http://localhost:3008",
     ],
     host: "0.0.0.0",
