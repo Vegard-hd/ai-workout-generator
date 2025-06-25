@@ -78,7 +78,7 @@ router.post("/unlike", async (req, res, next) => {
   }
 });
 
-const limiter = rateLimit({
+const aiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
   standardHeaders: "draft-8", // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
@@ -88,9 +88,8 @@ const limiter = rateLimit({
 });
 
 // Apply the rate limiting middleware to all requests.
-router.use(limiter);
 
-router.post("/workout", async (req, res, next) => {
+router.post("/workout", aiLimiter, async (req, res, next) => {
   try {
     const { activity, duration, focus, freshness, motivation } = req.body;
 
