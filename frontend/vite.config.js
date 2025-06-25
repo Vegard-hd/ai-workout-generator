@@ -11,6 +11,7 @@ export default defineConfig({
       ".localhost:3008/*",
       ".localhost:5173/*",
       ".localhost:3000",
+      ".backend:3008/*",
     ],
     host: "0.0.0.0",
     port: 5173,
