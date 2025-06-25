@@ -6,6 +6,9 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [tailwindcss(), preact()],
   server: {
+    allowedHosts: [
+      "my-public-apps-aiworkoutgenerator-lpwjh8-0cee82-51-68-234-12.traefik.me",
+    ],
     host: "0.0.0.0",
     port: 5173,
     watch: {
