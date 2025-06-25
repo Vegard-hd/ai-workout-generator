@@ -6,7 +6,7 @@ import logger from "morgan";
 import cors from "cors";
 import indexRouter from "./routes/index";
 import { config } from "dotenv";
-config({ path: "./.env" });
+config({ path: "../.env" });
 const app = express();
 
 // Define your CORS options
