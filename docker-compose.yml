@@ -12,6 +12,7 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=${NODE_ENV}
+      - VITE_API_URL=http://localhost:3008
     depends_on:
       - backend
 
