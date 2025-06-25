@@ -11,7 +11,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=${NODE_ENV}
     depends_on:
       - backend
 
@@ -25,5 +25,8 @@ services:
       - ./backend:/app
       - /app/node_modules
     environment:
-      - PORT=3008
-      - NODE_ENV=production
+      - PORT=${BACKEND_PORT}
+      - NODE_ENV=${NODE_ENV}
+      - MONGO_CONN_STRING=${MONGO_CONN_STRING}
+      - GEMINI_KEY=${GEMINI_KEY}
+      - CORS_ORIGIN=${CORS_ORIGIN}

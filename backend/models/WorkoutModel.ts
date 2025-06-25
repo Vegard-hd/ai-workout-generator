@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 import { config } from "dotenv";
-config({ path: "../.env" });
+config();
 
-if (!Bun.env.MONGO_CONN_STRING) {
+if (!process.env.MONGO_CONN_STRING) {
   throw new Error("MONGO_CONN_STRING environment variable is not defined");
 }
-await mongoose.connect(Bun.env.MONGO_CONN_STRING);
+await mongoose.connect(process.env.MONGO_CONN_STRING);
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
