@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.4.0",
+    "@types/cors": "^2.8.19",
     "@types/mongoose": "^5.11.97",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
