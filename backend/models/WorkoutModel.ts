@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { config } from "dotenv";
-config();
+config({ path: "../.env" });
 
 if (!Bun.env.MONGO_CONN_STRING) {
   throw new Error("MONGO_CONN_STRING environment variable is not defined");
