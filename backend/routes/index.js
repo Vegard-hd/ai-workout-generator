@@ -1,5 +1,6 @@
 import { Router } from "express";
 const router = Router();
+import { rateLimit } from "express-rate-limit";
 
 import GeminiService from "../services/GeminiService";
 import { WorkoutModel } from "../models/WorkoutModel";
@@ -76,6 +77,18 @@ router.post("/unlike", async (req, res, next) => {
     next(error);
   }
 });
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  limit: 5, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
+  standardHeaders: "draft-8", // draft-6: `RateLimit-*` headers; draft-7 & draft-8: combined `RateLimit` header
+  legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
+  // skip: (req) => req.url === "/api/like",
+  // store: ... , // Redis, Memcached, etc. See below.
+});
+
+// Apply the rate limiting middleware to all requests.
+router.use(limiter);
 
 router.post("/workout", async (req, res, next) => {
   try {

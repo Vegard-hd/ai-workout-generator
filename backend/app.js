@@ -4,13 +4,14 @@ import { join } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
+
 import indexRouter from "./routes/index";
 import { config } from "dotenv";
 config();
 const app = express();
 
 // Define your CORS options
-const corsOptions = {
+/* const corsOptions = {
   origin: process.CORS_ORIGIN, // Allow only this origin
   methods: ["GET", "POST", "OPTIONS"], // Allow these HTTP methods
   allowedHeaders: [
@@ -19,10 +20,10 @@ const corsOptions = {
     // Add any other custom header names your client might send
   ],
   optionsSuccessStatus: 200, // For legacy browser support
-};
+}; */
 
 // Enable CORS with specific options
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use(logger("dev"));
 app.use(json());

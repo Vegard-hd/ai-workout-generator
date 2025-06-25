@@ -6,11 +6,14 @@ export function LikeButton() {
   const [isLikeBtnHovered, setIsLikeBtnHovered] = useState(false);
   const likeMutation = useMutation({
     mutationFn: async () => {
-      const res = await fetch("http://backend:3008/api/like", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ workoutId }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_API_URL}/api/like`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ workoutId }),
+        }
+      );
       if (!res.ok) throw new Error("Failed to like workout");
     },
   });

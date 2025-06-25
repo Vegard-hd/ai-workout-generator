@@ -1,7 +1,5 @@
 services:
   frontend:
-    networks:
-      - app-network
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -13,12 +11,12 @@ services:
     environment:
       - NODE_ENV=${NODE_ENV}
       - VITE_API_URL=${VITE_API_URL}
+      - VITE_BACKEND_API_URL=${VITE_BACKEND_API_URL}
     depends_on:
       - backend
 
   backend:
-    networks:
-      - app-network
+
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -28,12 +26,9 @@ services:
       - ./backend:/app
       - /app/node_modules
     environment:
-      - PORT=${BACKEND_PORT}
+      - PORT=${PORT}
       - NODE_ENV=${NODE_ENV}
       - MONGO_CONN_STRING=${MONGO_CONN_STRING}
       - GEMINI_KEY=${GEMINI_KEY}
-      - CORS_ORIGIN=${CORS_ORIGIN}
+
       
-networks:
-  app-network:
-    driver: bridge
