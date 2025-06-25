@@ -16,7 +16,7 @@ export function DisplayWorkout({ workoutData }) {
   const { isPending, error, data } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
-      fetch("http://localhost:3008/api/workout", {
+      fetch(`${import.meta.env.VITE_API_URL}/api/workout`, {
         method: "POST",
         body: `{"activity":"${activity}","duration":${Number.parseInt(
           duration

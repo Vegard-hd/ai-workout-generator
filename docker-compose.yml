@@ -1,5 +1,7 @@
 services:
   frontend:
+    networks:
+      - app-network
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -15,6 +17,8 @@ services:
       - backend
 
   backend:
+    networks:
+      - app-network
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -29,3 +33,7 @@ services:
       - MONGO_CONN_STRING=${MONGO_CONN_STRING}
       - GEMINI_KEY=${GEMINI_KEY}
       - CORS_ORIGIN=${CORS_ORIGIN}
+      
+networks:
+  app-network:
+    driver: bridge

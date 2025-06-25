@@ -7,10 +7,12 @@ export function DisplayWorkoutDetails() {
   const { data, isLoading, error } = useQuery({
     queryKey: ["workout", workoutId],
     queryFn: () =>
-      fetch(`http://localhost:3008/api/workout/${workoutId}`).then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      }),
+      fetch(`${import.meta.env.VITE_API_URL}/api/workout/${workoutId}`).then(
+        (res) => {
+          if (!res.ok) throw new Error("Network response was not ok");
+          return res.json();
+        }
+      ),
     enabled: !!workoutId, // only run if workoutID is present
   });
   if (isLoading)
