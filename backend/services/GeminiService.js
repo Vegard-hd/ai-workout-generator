@@ -1,4 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
+import { config } from "dotenv";
+config({ path: "../.env" });
 class GeminiService {
   static {
     this.ai = new GoogleGenAI({ apiKey: process.env.GEMINI_KEY });

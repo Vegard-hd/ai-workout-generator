@@ -5,12 +5,13 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
 import indexRouter from "./routes/index";
-
+import { config } from "dotenv";
+config({ path: "./.env" });
 const app = express();
 
 // Define your CORS options
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow only this origin
+  origin: process.env.CORS_ORIGIN, // Allow only this origin
   methods: ["GET", "POST", "OPTIONS"], // Allow these HTTP methods
   allowedHeaders: [
     "Content-Type", // Allows the client to send the Content-Type header

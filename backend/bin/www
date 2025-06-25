@@ -6,7 +6,7 @@
 
 import app from "../app";
 import { config } from "dotenv";
-config();
+config({ path: "../.env" });
 var debug = require("debug")("express-template:server");
 import { createServer } from "http";
 
