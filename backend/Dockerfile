@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3008
 
-CMD ["bun", "run", "dev"]
+CMD ["bun", "run", "bin/www"]
