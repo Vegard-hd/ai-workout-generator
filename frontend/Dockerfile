@@ -13,7 +13,7 @@ COPY . .
 RUN bun run build
 
 # Expose the preview port (Vite preview typically uses 4173, not 5173)
-EXPOSE 5173
+EXPOSE 4173
 
 # Run the preview server with the correct host binding
 CMD ["bun", "run", "preview", "--host", "0.0.0.0"]

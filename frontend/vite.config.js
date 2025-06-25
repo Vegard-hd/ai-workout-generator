@@ -9,11 +9,11 @@ export default defineConfig({
     allowedHosts: [
       ".my-public-apps-aiworkoutgenerator-lpwjh8-0cee82-51-68-234-12.traefik.me",
       ".localhost:3008/*",
-      ".localhost:5173",
+      ".localhost:4173",
       ".localhost:3000",
     ],
     host: "0.0.0.0",
-    port: 5173,
+    port: 4173,
     watch: {
       usePolling: true,
     },
