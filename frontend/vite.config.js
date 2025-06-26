@@ -9,9 +9,12 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  base: "/",
-
   plugins: [tailwindcss(), preact()],
+  base: "/",
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+  },
   server: {
     allowedHosts: [
       ".my-public-apps-aiworkoutgenerator-lpwjh8-0cee82-51-68-234-12.traefik.me",
