@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, "dist")));
 // This wildcard route is essential for react-router to work correctly.
 // It sends the 'index.html' file for any request that doesn't match a static file.
 app.get("/{*splat}", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(port, () => {
