@@ -7,7 +7,7 @@ WORKDIR /app
 
 # Copy package.json and the bun lockfile
 # Using the lockfile ensures consistent installs
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 
 # Install all dependencies, including devDependencies needed for the build
 RUN bun install
