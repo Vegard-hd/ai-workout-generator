@@ -12,8 +12,11 @@ export default defineConfig({
   plugins: [tailwindcss(), preact()],
   base: "/",
   build: {
-    outDir: "dist",
-    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+      },
+    },
   },
   server: {
     allowedHosts: [
