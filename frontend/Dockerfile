@@ -39,7 +39,7 @@ COPY server.js .
 COPY --from=builder /app/dist ./dist
 
 # Expose the port that the Express server is running on
-EXPOSE 3000
+EXPOSE 3009
 
 # Command to start the production server using bun
 CMD ["bun", "server.js"]
