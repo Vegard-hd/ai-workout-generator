@@ -27,7 +27,7 @@ FROM oven/bun:1.2.17-alpine
 WORKDIR /app
 
 # Copy the package.json and lockfile again
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 
 # Install only the production dependencies (e.g., express)
 RUN bun install --production
