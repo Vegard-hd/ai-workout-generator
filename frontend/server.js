@@ -16,7 +16,7 @@ console.log("html is serving,", htmlServing);
 // Handle SPA routing - all routes should serve index.html
 app.get("/{*splat}", (req, res) => {
   try {
-    const indexPath = resolve(__dirname, "dist", "index.html");
+    const indexPath = resolve(__dirname, "../", "dist", "index.html");
     res.sendFile(indexPath);
   } catch (error) {
     console.warn(error);
