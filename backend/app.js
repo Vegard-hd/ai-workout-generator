@@ -9,7 +9,6 @@ import { config } from "dotenv";
 config();
 const app = express();
 
-console.log("cors origin .env var is .... ", process.env.CORS_ORIGIN);
 // Define your CORS options
 const corsOptions = {
   origin: process.env.CORS_ORIGIN, // Allow only this origin
@@ -19,13 +18,18 @@ const corsOptions = {
     "Authorization", // Allows the client to send the Authorization header (if you use it)
     // Add any other custom header names your client might send
   ],
+
   optionsSuccessStatus: 200, // For legacy browser support
 };
 
 // Enable CORS with specific options
+
 app.use(cors(corsOptions));
 
-app.use(logger("dev"));
+const isNodeEnvProduction = () => process.env.NODE_ENV === "production";
+
+app.use(logger(isNodeEnvProduction() ? "short" : "dev"));
+
 app.use(json());
 app.use(urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
 // app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded

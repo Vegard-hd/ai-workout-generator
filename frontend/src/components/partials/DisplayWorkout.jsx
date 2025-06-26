@@ -13,7 +13,8 @@ export function DisplayWorkout({ workoutData }) {
   const freshness = workoutData?.freshness ?? "Fully Recovered";
   const motivation = workoutData?.motivation ?? "Motivated";
   const navigate = useNavigate();
-  const { isPending, error, data } = useQuery({
+  console.log(import.meta.env.VITE_BACKEND_API_URL);
+  const { isPending, isError, data, error } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>
       fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/workout`, {
@@ -53,7 +54,9 @@ export function DisplayWorkout({ workoutData }) {
       </>
     );
 
-  if (error) return "An error has occurred: " + error.message;
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return navigate(`/workouts/${data?.id}`);
 }

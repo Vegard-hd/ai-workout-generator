@@ -15,8 +15,11 @@
     "@babel/preset-env": "^7.27.2",
     "@eslint/js": "^9.28.0",
     "@types/bun": "latest",
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/jest": "^29.5.14",
+    "@types/mongoose": "^5.11.97",
+    "@types/morgan": "^1.9.10",
     "babel-jest": "^30.0.0",
     "eslint": "^9.28.0",
     "eslint-config-prettier": "^10.1.5",
@@ -32,15 +35,12 @@
   },
   "dependencies": {
     "@google/genai": "^1.4.0",
-    "@types/cors": "^2.8.19",
-    "@types/mongoose": "^5.11.97",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-rate-limit": "^7.5.1",
     "http-errors": "^2.0.0",
-    "lint-staged": "^16.1.2",
     "mongoose": "^8.16.0",
     "morgan": "^1.10.0"
   }
