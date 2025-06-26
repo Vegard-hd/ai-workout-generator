@@ -15,8 +15,13 @@ const htmlServing = resolve(__dirname, "dist", "index.html");
 console.log("html is serving,", htmlServing);
 // Handle SPA routing - all routes should serve index.html
 app.get("/{*splat}", (req, res) => {
-  const indexPath = resolve(__dirname, "dist", "index.html");
-  res.send(indexPath);
+  try {
+    const indexPath = resolve(__dirname, "dist", "index.html");
+    res.sendFile(indexPath);
+  } catch (error) {
+    console.warn(error);
+    res.status(500).send("Failed to send html file with error: ", error);
+  }
 });
 
 app.listen(PORT, () => {
