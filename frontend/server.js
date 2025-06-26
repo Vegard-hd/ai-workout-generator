@@ -1,23 +1,38 @@
 import express from "express";
-import path from "path";
 import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { dirname, join, resolve } from "path";
+import fs from "fs";
 
 const app = express();
-const port = 3009;
+const PORT = process.env.PORT || 3009;
 
-// Serve static files from the 'dist' directory
-app.use(express.static(path.join(__dirname, "dist")));
-const testPath = path.join(__dirname, "dist", "index.html");
-console.log("path in app.get is ... ", testPath);
-// This wildcard route is essential for react-router to work correctly.
-// It sends the 'index.html' file for any request that doesn't match a static file.
-app.get("/{*splat}", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+// Get the directory name of the current module
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// Serve static files from the dist directory
+app.use(express.static(join(__dirname, "dist")));
+
+// Handle SPA routing - all routes should serve index.html
+app.get(/.*/, (req, res) => {
+  const indexPath = resolve(__dirname, "dist", "index.html");
+
+  // Check if index.html exists
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    res.status(404).send("Not found: dist/index.html does not exist");
+  }
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Current directory: ${__dirname}`);
+
+  // Debug: List files in dist directory
+  try {
+    const files = fs.readdirSync(join(__dirname, "dist"));
+    console.log("Files in dist directory:", files);
+  } catch (error) {
+    console.error("Error reading dist directory:", error);
+  }
 });
