@@ -9,13 +9,8 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, "index.html"),
-      },
-    },
-  },
+  base: "/",
+
   plugins: [tailwindcss(), preact()],
   server: {
     allowedHosts: [
