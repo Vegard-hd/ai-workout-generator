@@ -22,7 +22,7 @@ RUN bun run build
 
 # Stage 2: Create the lean production image
 # We use a slim alpine image for a smaller final image size
-FROM oven/bun:1.2.17-alpine-alpine
+FROM oven/bun:1.2.17-alpine
 
 WORKDIR /app
 
