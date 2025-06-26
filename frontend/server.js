@@ -24,10 +24,4 @@ app.listen(PORT, () => {
   console.log(`Current directory: ${__dirname}`);
 
   // Debug: List files in dist directory
-  try {
-    const files = fs.readdirSync(join(__dirname, "dist"));
-    console.log("Files in dist directory:", files);
-  } catch (error) {
-    console.error("Error reading dist directory:", error);
-  }
 });
