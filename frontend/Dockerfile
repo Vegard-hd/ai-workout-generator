@@ -10,10 +10,11 @@ COPY package.json bun.lock ./
 RUN bun install
 
 # Copy the rest of your application's source code
-COPY . .
 
 # Run the build script to generate the static assets
 RUN bun run build
+
+COPY . .
 
 # Expose the port
 EXPOSE 3009
