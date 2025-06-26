@@ -15,6 +15,10 @@ COPY . .
 # Run the build script to generate the static assets
 RUN bun run build
 
+# Debug: Check if dist was created
+RUN ls -la /app
+RUN ls -la /app/dist || echo "DIST DIRECTORY NOT FOUND"
+
 # Stage 2: Create the production image
 FROM oven/bun:1.2.17-alpine
 
@@ -31,6 +35,10 @@ COPY server.js .
 
 # Copy the built static assets from the builder stage
 COPY --from=builder /app/dist ./dist
+
+# Debug: Verify dist was copied
+RUN ls -la /app
+RUN ls -la /app/dist || echo "DIST DIRECTORY NOT COPIED"
 
 # Expose the port
 EXPOSE 3009
