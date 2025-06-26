@@ -10,12 +10,12 @@ const port = 3009;
 
 // Serve static files from the 'dist' directory
 app.use(express.static(path.join(__dirname, "dist")));
-
+const testPath = path.join(__dirname, "dist", "index.html");
+console.log("path in app.get is ... ", testPath);
 // This wildcard route is essential for react-router to work correctly.
 // It sends the 'index.html' file for any request that doesn't match a static file.
 app.get("/{*splat}", (req, res) => {
-  res.set("Content-Type", "text/javascript");
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 app.listen(port, () => {
