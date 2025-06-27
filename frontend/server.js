@@ -10,9 +10,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Debug: Check what's in the current directory
 console.log("Current directory contents:", readdirSync(__dirname));
+console.log("Current directory ../", readdirSync(__dirname, "../"));
 
 // Debug: Check if dist exists
-const distPath = join(__dirname, "dist");
+const distPath = join(__dirname, "../", "dist");
 console.log("Dist path:", distPath);
 console.log("Dist exists:", existsSync(distPath));
 
