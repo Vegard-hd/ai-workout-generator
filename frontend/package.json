@@ -20,6 +20,6 @@
     "@preact/preset-vite": "^2.10.1",
     "@types/react-router-dom": "^5.3.3",
     "daisyui": "^5.0.43",
-    "vite": "^6.3.5"
+    "vite": "^7.0.0"
   }
 }
