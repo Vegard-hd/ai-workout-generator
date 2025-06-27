@@ -19,7 +19,7 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 
 # Copy backend files and install production deps
-COPY package*.json ./
+COPY backend/package*.json ./
 RUN bun install --production
 
 # Copy your backend code
