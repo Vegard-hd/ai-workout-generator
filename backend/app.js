@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 import cors from "cors";
 import indexRouter from "./routes/index";
+import serveHtmlRouter from "./routes/serveHtmlRouter";
 import { config } from "dotenv";
 config();
 const app = express();
@@ -40,6 +41,7 @@ app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
 
 // router endpoint binding
+app.use("/", serveHtmlRouter);
 app.use("/api", indexRouter);
 
 // catch 404 and forward to error handler
