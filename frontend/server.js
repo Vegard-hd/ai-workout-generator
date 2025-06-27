@@ -14,6 +14,10 @@ console.log("Current directory ../", readdirSync(__dirname));
 
 // Debug: Check if dist exists
 const distPath = join(__dirname, "dist");
+
+const testPath = join("../", dirname);
+console.log("test path is . ... ", testPath);
+
 console.log("Dist path:", distPath);
 console.log("Dist exists:", existsSync(distPath));
 
