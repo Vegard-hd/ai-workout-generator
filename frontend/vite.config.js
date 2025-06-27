@@ -6,7 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   plugins: [tailwindcss(), preact()],
   build: {
-    outDir: "app/dist", // This should be 'dist'
+    outDir: "dist", // This should be 'dist'
   },
   server: {
     allowedHosts: [

@@ -14,6 +14,10 @@ COPY . .
 # Run the build script to generate the static assets
 RUN npm run build
 
+COPY . . 
+
+COPY dist /app/ 
+
 # Expose the port
 EXPOSE 3009
 
