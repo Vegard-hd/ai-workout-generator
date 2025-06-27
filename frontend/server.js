@@ -1,7 +1,7 @@
 import express from "express";
 import { fileURLToPath } from "url";
 import { dirname, join, resolve } from "path";
-import { existsSync, readdirSync } from "fs";
+import { existsSync, read, readdirSync } from "fs";
 
 const app = express();
 const PORT = process.env.PORT || 3009;
@@ -17,6 +17,8 @@ const distPath = join(__dirname, "dist");
 
 const testPath = resolve("../", __dirname);
 console.log("test path is . ... ", testPath);
+
+console.log("content in test path is ", readdirSync(testPath));
 
 console.log("Dist path:", distPath);
 console.log("Dist exists:", existsSync(distPath));
