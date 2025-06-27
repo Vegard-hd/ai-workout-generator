@@ -4,10 +4,11 @@ import { dirname, resolve, join } from "path";
 const router = Router();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const distDir = resolve(__dirname, "../../frontend/dist");
+const distDir = resolve(__dirname, "../frontend/dist");
 
 // Serve all static assets in dist
 router.use(static_(distDir));
+console.log(distDir);
 
 // Send index.html for the root path ("/")
 router.get("/", (req, res, next) => {
