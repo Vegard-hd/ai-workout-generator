@@ -5,6 +5,9 @@ import { SelectFreshness } from "./components/SelectFreshness";
 import { SelectMotivation } from "./components/SelectMotivation";
 import { WorkoutGenerator } from "./components/WorkoutGenerator";
 import { useState } from "preact/hooks";
+
+import something from "../public/android-chrome-192x192.png";
+
 export function App() {
   const activityOptions = ["Cycling", "Running"];
   const [activity, setActivity] = useState(activityOptions[0]);
@@ -43,9 +46,14 @@ export function App() {
   };
   return (
     <>
-      <h1 className=" flex text-5xl text-center justify-center p-3">
-        AI Workout Generator
-      </h1>
+      <div className="flex justify-center items-center gap-x-5 p-3">
+        <h1 className="text-5xl text-center">AI Workout Generator</h1>
+        <div className="avatar">
+          <div className="w-24 rounded-xl">
+            <img src={something} alt="Avatar" />
+          </div>
+        </div>
+      </div>
 
       <SelectActivity
         currentActivity={activity} // Pass the state value
