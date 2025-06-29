@@ -34,6 +34,8 @@ const WorkoutSchema = new Schema({
 // Create the model from schema
 const MongooseWorkoutModel = mongoose.model("Workouts", WorkoutSchema);
 
+await MongooseWorkoutModel.createCollection();
+
 /* REF generated with claude sonnet thinking 3.7 */
 export class WorkoutModel {
   /**
