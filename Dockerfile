@@ -7,9 +7,13 @@ WORKDIR /app
 COPY frontend/package*.json ./
 RUN bun install
 
+ENV VITE_BACKEND_API_URL=${VITE_BACKEND_API_URL}
+
 # Copy the frontend source
 COPY frontend/ ./
 RUN bun run build
+
+
 
 # --- production stage ---
 FROM oven/bun:1.2.17-alpine
