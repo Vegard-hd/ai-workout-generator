@@ -6,15 +6,14 @@ if (!process.env.MONGO_CONN_STRING || !process.env.PROD_MONGO_CONN) {
   throw new Error("MONGO_CONN_STRING environment variable is not defined");
 }
 
-if (process.env.NODE_ENV === "production") {
-  await mongoose.connect(process.env.PROD_MONGO_CONN).catch((e) => {
-    console.warn("Mongoose failed to connect with PRODUCTION error....", e);
-  });
-} else {
-  await mongoose.connect(process.env.MONGO_CONN_STRING).catch((e) => {
-    console.warn("Mongoose failed to connect with error....", e);
-  });
-}
+const mongoConnString =
+  process.env.NODE_ENV === "production"
+    ? process.env.PROD_MONGO_CONN
+    : process.env.MONGO_CONN_STRING;
+
+await mongoose.connect(mongoConnString).catch((e) => {
+  console.warn("Mongoose failed to connect with PRODUCTION error....", e);
+});
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
