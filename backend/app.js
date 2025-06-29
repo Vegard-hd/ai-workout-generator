@@ -10,6 +10,8 @@ import { config } from "dotenv";
 config();
 const app = express();
 
+console.log("cors origin is ... ", process.env.CORS_ORIGIN);
+
 // Define your CORS options
 const corsOptions = {
   origin: process.env.CORS_ORIGIN, // Allow only this origin
