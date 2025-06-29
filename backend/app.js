@@ -3,7 +3,7 @@ import express, { json, urlencoded } from "express";
 import { join } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-import cors from "cors";
+// import cors from "cors";
 import indexRouter from "./routes/index";
 import serveHtmlRouter from "./routes/serveHtmlRouter";
 import { config } from "dotenv";
@@ -13,7 +13,7 @@ const app = express();
 console.log("cors origin is ... ", process.env.CORS_ORIGIN);
 
 // Define your CORS options
-const corsOptions = {
+/* const corsOptions = {
   origin: process.env.CORS_ORIGIN, // Allow only this origin
   methods: ["GET", "POST", "OPTIONS"], // Allow these HTTP methods
   allowedHeaders: [
@@ -24,10 +24,10 @@ const corsOptions = {
 
   optionsSuccessStatus: 200, // For legacy browser support
 };
-
+ */
 // Enable CORS with specific options
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 const isNodeEnvProduction = () => process.env.NODE_ENV === "production";
 
