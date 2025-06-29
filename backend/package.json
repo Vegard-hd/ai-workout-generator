@@ -6,7 +6,8 @@
     "dev": "bun --watch bin/www",
     "lint": "eslint .",
     "format": "prettier write .",
-    "test": "bun test --watch"
+    "test": "bun test --watch",
+    "preview": "bun run bin/www"
   },
   "type": "module",
   "private": true,

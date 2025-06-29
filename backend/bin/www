@@ -30,8 +30,8 @@ var server = createServer(app);
 server.listen(port);
 server.on("error", onError);
 server.on("listening", () => {
-  onListening;
   console.warn("Servers is listening on port", port);
+  onListening;
 });
 
 /**

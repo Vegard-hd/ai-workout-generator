@@ -2,10 +2,19 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 config();
 
-if (!process.env.MONGO_CONN_STRING) {
+if (!process.env.MONGO_CONN_STRING || !process.env.PROD_MONGO_CONN) {
   throw new Error("MONGO_CONN_STRING environment variable is not defined");
 }
-await mongoose.connect(process.env.MONGO_CONN_STRING);
+
+if (process.env.NODE_ENV === "production") {
+  await mongoose.connect(process.env.PROD_MONGO_CONN).catch((e) => {
+    console.warn("Mongoose failed to connect with PRODUCTION error....", e);
+  });
+} else {
+  await mongoose.connect(process.env.MONGO_CONN_STRING).catch((e) => {
+    console.warn("Mongoose failed to connect with error....", e);
+  });
+}
 
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
