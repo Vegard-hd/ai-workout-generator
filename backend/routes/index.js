@@ -3,8 +3,7 @@ const router = Router();
 import { rateLimit } from "express-rate-limit";
 
 import GeminiService from "../services/GeminiService";
-import { WorkoutModel } from "../models/WorkoutModel";
-const workoutModel = new WorkoutModel();
+
 import { parseTrainingData } from "../functions/parseTrainingData";
 
 import { PocketBaseService } from "../pocketbase/workouts";
@@ -55,15 +54,7 @@ router.post("/like", async (req, res, next) => {
 router.post("/unlike", async (req, res, next) => {
   try {
     const { workoutId } = req.body;
-    return await workoutModel
-      .decrementLikes(workoutId)
-      .then((data) => {
-        return res.status(201).json({ data: JSON.parse(data) });
-      })
-      .catch((err) => {
-        console.warn(err);
-        return res.status(400).json({ data: false });
-      });
+    res.send("todo... finish this API", workoutId);
   } catch (error) {
     next(error);
   }
