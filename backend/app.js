@@ -7,7 +7,6 @@ import cookieParser from "cookie-parser";
 import logger from "morgan";
 // import cors from "cors";
 import indexRouter from "./routes/index";
-import serveHtmlRouter from "./routes/serveHtmlRouter";
 import { config } from "dotenv";
 config();
 const app = express();
@@ -46,7 +45,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 // public files and node modules
 app.use(express.static(join(__dirname, "public")));
 
-const distDir = resolve(__dirname, "../frontend/dist");
+const distDir = resolve(__dirname, "./frontend/dist");
 
 // const distDir = resolve(__dirname, "../frontend/dist");
 
@@ -59,9 +58,6 @@ app.get("/{*splat}", (req, res, next) => {
     if (err) next(err);
   });
 });
-
-// router endpoint binding
-app.use("/", serveHtmlRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
