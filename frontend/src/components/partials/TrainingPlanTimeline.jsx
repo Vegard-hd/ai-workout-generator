@@ -21,38 +21,42 @@ export function TrainingPlanTimeline({
     };
     return colors[zone] || "#D1D5DB"; // Default gray-300
   };
+  const parsedBlocks = JSON.parse(blocks);
+  const parsedDuration = JSON.parse(totalDuration);
+  const parsedDetails = JSON.parse(details);
+  const parsedTitle = JSON.parse(title);
   return (
     <>
       <h1 className="text-center text-xl sm:text-3xl xl:text-5xl p-8 text-nowrap">
-        {title}
+        {parsedTitle}
       </h1>
       <ul className="list-none text-center space-y-2">
         <li>
           <span className="font-semibold">Activity:</span>{" "}
-          {details.activity ?? "N/A"}
+          {parsedDetails.activity ?? "N/A"}
         </li>
         <li>
           <span className="font-semibold">Duration:</span>{" "}
-          {details.duration ?? "N/A"}
+          {parsedDetails.duration ?? "N/A"}
         </li>
         <li>
-          <span className="font-semibold">Focus:</span> {details.focus ?? "N/A"}
+          <span className="font-semibold">Focus:</span>{" "}
+          {parsedDetails.focus ?? "N/A"}
         </li>
         <li>
           <span className="font-semibold">Freshness:</span>{" "}
-          {details.freshness ?? "N/A"}
+          {parsedDetails.freshness ?? "N/A"}
         </li>
         <li>
           <span className="font-semibold">Motivation:</span>{" "}
-          {details.motivation ?? "N/A"}
+          {parsedDetails.motivation ?? "N/A"}
         </li>
       </ul>
-
       <div className=" flex place-self-center w-11/12  lg:w-4/5 h-20 rounded overflow-hidden mb-10 mt-10 ">
-        {blocks.map((block, index) => {
+        {parsedBlocks.map((block, index) => {
           // Calculate percentage width based on duration
-          const widthPercentage = (block.duration / totalDuration) * 100;
-
+          const widthPercentage =
+            (block.duration / parsedDuration.totalDuration) * 100;
           return (
             <div
               key={index}

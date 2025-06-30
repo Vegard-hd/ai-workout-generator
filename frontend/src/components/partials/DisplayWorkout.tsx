@@ -1,19 +1,23 @@
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
-import { TrainingPlanTimeline } from "./TrainingPlanTimeline";
+import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-export function DisplayWorkout({ workoutData }) {
+export function DisplayWorkout(workoutData: {
+  activity: string;
+  duration: string;
+  focus: string;
+  freshness: string;
+  motivation: string;
+}) {
   const activity = workoutData?.activity ?? "cycling";
   const duration = workoutData?.duration ?? "20";
   const focus = workoutData?.focus ?? "recovery";
   const freshness = workoutData?.freshness ?? "Fully Recovered";
   const motivation = workoutData?.motivation ?? "Motivated";
   const navigate = useNavigate();
-  console.log(import.meta.env.VITE_BACKEND_API_URL);
+
+  if (!import.meta.env.VITE_BACKEND_API_URL)
+    throw new Error("Missing env.VITE_BACKEND_API_URL  from build process");
+
   const { isPending, isError, data, error } = useQuery({
     queryKey: ["repoData"],
     queryFn: () =>

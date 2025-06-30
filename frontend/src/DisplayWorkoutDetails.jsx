@@ -47,17 +47,13 @@ export function DisplayWorkoutDetails() {
   if (error)
     return <div className="p-4 text-red-500">Error: {error.message}</div>;
 
-  const workoutArr = JSON.parse(data.workout);
-  const durationObj = JSON.parse(data.duration);
-  const detailsObj = JSON.parse(data?.details ?? null);
-  const workoutTitle = JSON.parse(data?.title ?? "no title");
   return (
     <section className=" ">
       <TrainingPlanTimeline
-        blocks={workoutArr}
-        totalDuration={durationObj?.totalDuration}
-        details={detailsObj}
-        title={workoutTitle}
+        blocks={data.workout}
+        totalDuration={data.duration}
+        details={data.details}
+        title={data.title}
       />
     </section>
   );

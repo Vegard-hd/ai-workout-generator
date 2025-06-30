@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 import { join, dirname, resolve } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
-// import cors from "cors";
+import cors from "cors";
 import indexRouter from "./routes/index";
 import { config } from "dotenv";
 config();
@@ -13,9 +13,11 @@ const app = express();
 
 app.set("trust proxy", 1);
 
+const isNodeEnvProduction = () => process.env.NODE_ENV === "production";
+
 // Define your CORS options
-/* const corsOptions = {
-  origin: process.env.CORS_ORIGIN, // Allow only this origin
+const corsOptions = {
+  origin: "*", // Allow only this origin
   methods: ["GET", "POST", "OPTIONS"], // Allow these HTTP methods
   allowedHeaders: [
     "Content-Type", // Allows the client to send the Content-Type header
@@ -25,38 +27,41 @@ app.set("trust proxy", 1);
 
   optionsSuccessStatus: 200, // For legacy browser support
 };
- */
-// Enable CORS with specific options
 
-// app.use(cors(corsOptions));
-
-const isNodeEnvProduction = () => process.env.NODE_ENV === "production";
+if (!isNodeEnvProduction()) {
+  app.use(cors(corsOptions));
+}
 
 app.use(logger(isNodeEnvProduction() ? "short" : "dev"));
 
 app.use(json());
 app.use(urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
-// app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-// app.use(bodyParser.json()); // for parsing application/json
 app.use(cookieParser());
+
+// api endpoint - serve before everything else for frontend to work
 app.use("/api", indexRouter);
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // public files and node modules
 app.use(express.static(join(__dirname, "public")));
 
+// dist files generated from vite build
 const distDir = resolve(__dirname, "./frontend/dist");
-
-// const distDir = resolve(__dirname, "../frontend/dist");
 
 // Serve all static assets in dist
 app.use(static_(distDir));
 
-// Send index.html for the root path ("/")
+// Send index.html for the root path
 app.get("/{*splat}", (req, res, next) => {
-  res.sendFile(join(distDir, "index.html"), (err) => {
-    if (err) next(err);
-  });
+  try {
+    res.sendFile(join(distDir, "index.html"), (err) => {
+      if (err) next(err);
+    });
+  } catch (error) {
+    console.warn(error);
+    throw new Error("Failed to send index.html");
+  }
 });
 
 // catch 404 and forward to error handler

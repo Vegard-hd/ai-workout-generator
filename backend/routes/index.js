@@ -10,9 +10,11 @@ import { PocketBaseService } from "../pocketbase/workouts";
 
 const pocketBaseService = new PocketBaseService();
 
+// returns the most popular workouts sorted by likes
 router.get("/workout", async (req, res, next) => {
   try {
-    const workouts = "";
+    const workouts = await pocketBaseService.getMostPopularWorkouts();
+    console.dir(workouts);
     res.json(workouts);
   } catch (error) {
     next(error);
