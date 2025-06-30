@@ -1,6 +1,8 @@
 import createError from "http-errors";
-import express, { json, urlencoded } from "express";
-import { join } from "path";
+import express, { json, urlencoded, static as static_ } from "express";
+import { fileURLToPath } from "url";
+
+import { join, dirname, resolve } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 // import cors from "cors";
@@ -38,13 +40,28 @@ app.use(urlencoded({ extended: true })); // Add this line to parse URL-encoded b
 // app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 // app.use(bodyParser.json()); // for parsing application/json
 app.use(cookieParser());
+app.use("/api", indexRouter);
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // public files and node modules
 app.use(express.static(join(__dirname, "public")));
 
+const distDir = resolve(__dirname, "../frontend/dist");
+
+// const distDir = resolve(__dirname, "../frontend/dist");
+
+// Serve all static assets in dist
+app.use(static_(distDir));
+
+// Send index.html for the root path ("/")
+app.get("/{*splat}", (req, res, next) => {
+  res.sendFile(join(distDir, "index.html"), (err) => {
+    if (err) next(err);
+  });
+});
+
 // router endpoint binding
 app.use("/", serveHtmlRouter);
-app.use("/api", indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

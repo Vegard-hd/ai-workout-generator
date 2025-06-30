@@ -13,6 +13,7 @@
         "http-errors": "^2.0.0",
         "mongoose": "^8.16.0",
         "morgan": "^1.10.0",
+        "pocketbase": "^0.26.1",
       },
       "devDependencies": {
         "@babel/core": "^7.27.4",
@@ -1043,6 +1044,8 @@
     "pkce-challenge": ["pkce-challenge@5.0.0", "", {}, "sha512-ueGLflrrnvwB3xuo/uGob5pd5FN7l0MsLf0Z87o/UQmRtwjvfylfc9MurIxRAWywCYTgrvpXBcqjV4OfCYGCIQ=="],
 
     "pkg-dir": ["pkg-dir@4.2.0", "", { "dependencies": { "find-up": "^4.0.0" } }, "sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ=="],
+
+    "pocketbase": ["pocketbase@0.26.1", "", {}, "sha512-fjcPDpxyqTZCwqGUTPUV7vssIsNMqHxk9GxbhxYHPEf18RqX2d9cpSqbbHk7aas30jqkgptuKfG7aY/Mytjj3g=="],
 
     "prelude-ls": ["prelude-ls@1.2.1", "", {}, "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="],
 

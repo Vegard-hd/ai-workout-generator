@@ -7,18 +7,9 @@ import { WorkoutModel } from "../models/WorkoutModel";
 const workoutModel = new WorkoutModel();
 import { parseTrainingData } from "../functions/parseTrainingData";
 
-/* async function createDelay(timer = 2500) {
-  const myPromise = new Promise((resolve, reject) => {
-    try {
-      setInterval(() => {
-        resolve();
-      }, timer);
-    } catch (error) {
-      if (error) reject();
-    }
-  });
-  return await myPromise;
-} */
+import { PocketBaseService } from "../pocketbase/workouts";
+
+const pocketBaseService = new PocketBaseService();
 
 router.get("/workout", async (req, res, next) => {
   try {
@@ -31,7 +22,7 @@ router.get("/workout", async (req, res, next) => {
 router.get("/workout/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
-    const workoutData = await workoutModel.getWorkout({ _id: id });
+    const workoutData = await pocketBaseService.getOneWithId(id);
     console.dir(workoutData);
     res.json(workoutData);
   } catch (error) {
@@ -46,11 +37,11 @@ router.post("/like", async (req, res, next) => {
     if (typeof workoutId?.workoutId !== "string") {
       throw new Error("The workout id must be a valid string ");
     }
-    return await workoutModel
-      .updateLikes(workoutId?.workoutId)
+    return await pocketBaseService
+      .incrementLike(workoutId?.workoutId)
       .then((data) => {
         console.dir(data);
-        return res.status(201).json({ success: true });
+        return res.status(201).json({ success: true, data: data });
       })
       .catch((err) => {
         console.warn(err);
@@ -111,7 +102,6 @@ router.post("/workout", aiLimiter, async (req, res, next) => {
     const workoutName = await GeminiService.generateWorkoutName().then((data) =>
       data.trim(),
     );
-    console.log(workoutName);
 
     // console.log(geminiAiResult);
     const mockResult = [
@@ -139,15 +129,16 @@ router.post("/workout", aiLimiter, async (req, res, next) => {
     res.header("Content-Type: application/json");
 
     const workoutDuration = await parseTrainingData(mockResult);
-    return await workoutModel
+    return await pocketBaseService
       .createWorkout({
-        workout: JSON.stringify(mockResult),
-        duration: JSON.stringify(workoutDuration),
         title: JSON.stringify(workoutName),
+        duration: JSON.stringify(workoutDuration),
+        workout: JSON.stringify(mockResult),
         details: JSON.stringify(workoutDetilsObj),
+        likes: 1,
       })
       .then((data) => {
-        return res.status(201).json({ success: true, id: data._id });
+        return res.status(201).json({ success: true, id: data.id });
       })
       .catch((err) => {
         console.warn(err);

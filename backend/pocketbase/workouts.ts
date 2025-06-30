@@ -1,0 +1,47 @@
+import { pocketbaseInstance } from "./index";
+
+export class PocketBaseService {
+  pb: any;
+  constructor() {
+    this.pb = pocketbaseInstance();
+  }
+  // fetch a paginated records list
+
+  async incrementLike(id: string) {
+    const workoutToUpdate = await this.pb.collection("Workouts").getOne(id, {});
+    const currentLikes = Number.parseInt(workoutToUpdate.likes);
+    const updatedLikes = { likes: currentLikes + 1 };
+    if (!updatedLikes.likes || typeof updatedLikes.likes !== "number")
+      throw new Error("Failed to update likes on workout");
+
+    return await this.pb.collection("Workouts").update(id, updatedLikes);
+  }
+
+  async getOneWithId(id: string) {
+    return await this.pb.collection("Workouts").getOne(id, {});
+  }
+
+  // you can also fetch all records at once via getFullList
+
+  async getMostPopularWorkouts() {
+    return await this.pb.collection("Workouts").getFullList({
+      sort: "-likes",
+    });
+  }
+
+  async createWorkout(workoutData: {
+    title: string;
+    workout: string;
+    duration: string;
+    details: string;
+    likes: number;
+  }) {
+    try {
+      const workout = await this.pb.collection("Workouts").create(workoutData);
+      return workout;
+    } catch (error) {
+      console.warn(error);
+      throw new Error("Failed to create workout in pocketbase");
+    }
+  }
+}
