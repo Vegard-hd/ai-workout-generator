@@ -6,6 +6,8 @@ import GeminiService from "../services/GeminiService";
 
 import { parseTrainingData } from "../functions/parseTrainingData";
 
+import { validateNewWorkout } from "../validation/validateNewWorkout";
+
 import { PocketBaseService } from "../pocketbase/workouts";
 
 const pocketBaseService = new PocketBaseService();
@@ -74,81 +76,74 @@ const aiLimiter = rateLimit({
 
 // Apply the rate limiting middleware to all requests.
 
-router.post("/workout", aiLimiter, async (req, res, next) => {
-  try {
-    const { activity, duration, focus, freshness, motivation } = req.body;
+router.post(
+  "/workout",
+  aiLimiter,
+  validateNewWorkout,
+  async (req, res, next) => {
+    try {
+      const { activity, duration, focus, freshness, motivation } = req.body;
 
-    if (!activity || !duration || !focus || !freshness || !motivation) {
-      return res
-        .status(400)
-        .json({ error: "Missing required workout options" });
+      const workoutDetilsObj = {
+        activity: activity,
+        duration: duration,
+        focus: focus,
+        freshness: freshness,
+        motivation: motivation,
+      };
+
+      const workoutName = await GeminiService.generateWorkoutName(
+        workoutDetilsObj.focus,
+        workoutDetilsObj.activity,
+      ).then((data) => data.trim());
+
+      // console.log(geminiAiResult);
+      const mockResult = [
+        {
+          duration: 5,
+          zone: 1,
+          description: "Easy warm-up, gentle pedaling.",
+        },
+        {
+          duration: 5,
+          zone: 2,
+          description: "Light spinning, focusing on smooth pedal strokes.",
+        },
+        {
+          duration: 5,
+          zone: 1,
+          description: "Active recovery, very light resistance.",
+        },
+        {
+          duration: 5,
+          zone: 2,
+          description: "Increase cadence slightly, maintain low resistance.",
+        },
+      ];
+      res.header("Content-Type: application/json");
+
+      const workoutDuration = await parseTrainingData(mockResult);
+      return await pocketBaseService
+        .createWorkout({
+          title: JSON.stringify(workoutName),
+          duration: JSON.stringify(workoutDuration),
+          workout: JSON.stringify(mockResult),
+          details: JSON.stringify(workoutDetilsObj),
+          likes: 1,
+        })
+        .then((data) => {
+          console.dir(data);
+          return res.status(201).json({ success: true, id: data.id });
+        })
+        .catch((err) => {
+          console.warn(err);
+          return res.status(400).json({ success: false, id: null });
+        });
+    } catch (error) {
+      console.error("Error generating workout:", error);
+      next(error);
     }
-    const workoutDetilsObj = {
-      activity: activity,
-      duration: duration,
-      focus: focus,
-      freshness: freshness,
-      motivation: motivation,
-    };
-    // const geminiAiResult = await GeminiService.generateWorkout(req.body);
-
-    const workoutName = await GeminiService.generateWorkoutName(
-      workoutDetilsObj.focus,
-      workoutDetilsObj.activity,
-    ).then((data) => data.trim());
-
-    // console.log(geminiAiResult);
-    const mockResult = [
-      {
-        duration: 5,
-        zone: 1,
-        description: "Easy warm-up, gentle pedaling.",
-      },
-      {
-        duration: 5,
-        zone: 2,
-        description: "Light spinning, focusing on smooth pedal strokes.",
-      },
-      {
-        duration: 5,
-        zone: 1,
-        description: "Active recovery, very light resistance.",
-      },
-      {
-        duration: 5,
-        zone: 2,
-        description: "Increase cadence slightly, maintain low resistance.",
-      },
-    ];
-    res.header("Content-Type: application/json");
-
-    const workoutDuration = await parseTrainingData(mockResult);
-    return await pocketBaseService
-      .createWorkout({
-        title: JSON.stringify(workoutName),
-        duration: JSON.stringify(workoutDuration),
-        workout: JSON.stringify(mockResult),
-        details: JSON.stringify(workoutDetilsObj),
-        likes: 1,
-      })
-      .then((data) => {
-        return res.status(201).json({ success: true, id: data.id });
-      })
-      .catch((err) => {
-        console.warn(err);
-        return res.status(400).json({ success: false, id: null });
-      });
-    /* 
-    1. insert into mongodb
-    2. return the mongoID + 201
-    2.5 redirect the client to /workout/:id 
-    3. client fetch(/workout/:id)
-    
-    */
-  } catch (error) {
-    console.error("Error generating workout:", error);
-    next(error);
-  }
-});
+  },
+);
 
 export default router;

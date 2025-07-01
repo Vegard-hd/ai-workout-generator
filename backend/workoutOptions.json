@@ -1,0 +1,24 @@
+{
+  "focusOptions": [
+    "Recovery",
+    "Endurance",
+    "Threshold",
+    "Short climbs",
+    "Max power"
+  ],
+  "freshnessOptions": [
+    "Fully Recovered",
+    "Well Rested",
+    "Moderately Fatigued",
+    "Significantly Fatigued",
+    "Very Drained"
+  ],
+  "motivationOptions": [
+    "Motivated",
+    "Extremely motivated",
+    "Just want to get it done",
+    "Not motivated"
+  ],
+  "activityOptions": ["Cycling", "Running"],
+  "durationOptions": [20, 30, 45, 60, 75, 90, 120, 150, 180]
+}

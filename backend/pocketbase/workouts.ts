@@ -1,5 +1,5 @@
 import { pocketbaseInstance } from "./index";
-import PocketBase from "pocketbase";
+import type PocketBase from "pocketbase";
 
 export class PocketBaseService {
   pb: PocketBase;
