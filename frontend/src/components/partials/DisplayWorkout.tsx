@@ -41,26 +41,17 @@ export function DisplayWorkout(workoutData: {
           </h4>
           <span className="loading loading-spinner loading-xl"></span>
         </div>
-
-        <section
-          className={`flex place-self-center-safe max-w-[1200px] opacity-0 transition-opacity duration-500 ease-in-out ${
-            isPending ? "opacity-100" : ""
-          }`}
-        >
-          <div className="grid grid-cols-5 gap-0 justify-items-center-safe ">
-            <div className="skeleton h-46 w-46 rounded-none bg-gray-500/30"></div>
-            <div className="skeleton h-46 w-46 rounded-none bg-green-500/30"></div>
-            <div className="skeleton h-46 w-46 rounded-none bg-blue-500/30"></div>
-            <div className="skeleton h-46 w-46 rounded-none bg-yellow-500/30"></div>
-            <div className="skeleton h-46 w-46 rounded-none bg-red-500/30"></div>
-          </div>
-        </section>
       </>
     );
 
-  if (isError) {
-    return <span>Error: {error.message}</span>;
+  if (isError || data?.error) {
+    return (
+      <span className="text-center text-error text-2xl flex justify-center-safe">
+        Error: {error?.message ?? data?.error}
+      </span>
+    );
   }
-
+  console.log(data);
+  console.dir(data);
   return navigate(`/workouts/${data?.id}`);
 }

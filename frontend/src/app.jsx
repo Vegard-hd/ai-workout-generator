@@ -70,7 +70,7 @@ export function App() {
         }}
         style={{ cursor: "pointer" }}
         className={`
-          flex place-self-center mb-8 p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
+          flex place-self-center p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
           bg-primary text-primary-content rounded-full transition-transform duration-200 ${
             showCreateWorkoutOptions ? " hidden" : ""
           } `}
