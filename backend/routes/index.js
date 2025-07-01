@@ -92,9 +92,10 @@ router.post("/workout", aiLimiter, async (req, res, next) => {
     };
     // const geminiAiResult = await GeminiService.generateWorkout(req.body);
 
-    const workoutName = await GeminiService.generateWorkoutName().then((data) =>
-      data.trim(),
-    );
+    const workoutName = await GeminiService.generateWorkoutName(
+      workoutDetilsObj.focus,
+      workoutDetilsObj.activity,
+    ).then((data) => data.trim());
 
     // console.log(geminiAiResult);
     const mockResult = [
