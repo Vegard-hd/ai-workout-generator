@@ -27,6 +27,7 @@ export function WorkoutGenerator({ workoutData }) {
             Generate workout!
           </button>
         )}
+        <div className="divider"></div>
       </section>
 
       {displayWorkout && <DisplayWorkout workoutData={workoutData} />}

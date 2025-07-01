@@ -14,7 +14,7 @@ import something from "../public/android-chrome-192x192.png";
 export function App() {
   const activityOptions = ["Cycling", "Running"];
   const [activity, setActivity] = useState(activityOptions[0]);
-
+  const [isHovered, setIsHovered] = useState(false);
   const [showCreateWorkoutOptions, setShowCreateWorkoutOptions] =
     useState(false);
 
@@ -70,12 +70,27 @@ export function App() {
         }}
         style={{ cursor: "pointer" }}
         className={`
-          flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
-          bg-primary text-primary-content rounded-full `}
+          flex place-self-center mb-8 p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
+          bg-primary text-primary-content rounded-full transition-transform duration-200 ${
+            showCreateWorkoutOptions ? " hidden" : ""
+          } `}
         type="button" // Change to type="button" to prevent form submission if it's inside a form
       >
-        Generate workout!
+        Create new workout!
       </button>
+
+      <div
+        className={`divider ${showCreateWorkoutOptions ? " hidden" : ""}`}
+      ></div>
+
+      <h2
+        className={`text-center text-pretty text-base-content mt-15 text-2xl transition-transform duration-200
+        ${showCreateWorkoutOptions ? " hidden" : ""} }
+        
+        `}
+      >
+        Or view the most popular workouts below:
+      </h2>
 
       <section className={`${showCreateWorkoutOptions ? "" : " hidden"}`}>
         <SelectActivity
@@ -108,7 +123,8 @@ export function App() {
         </div>
         <WorkoutGenerator workoutData={userWorkoutConfig} />
       </section>
-      <section>
+
+      <section className="mt-15">
         <DisplayListOfWorkouts />
       </section>
     </>
