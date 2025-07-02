@@ -9,7 +9,7 @@ import { DisplayListOfWorkouts } from "./components/DisplayListOfWorkouts";
 
 import { useState } from "preact/hooks";
 
-import something from "../public/android-chrome-192x192.png";
+import faviconImage from "../src/assets/android-chrome-192x192.png";
 
 export function App() {
   const activityOptions = ["Cycling", "Running"];
@@ -57,7 +57,7 @@ export function App() {
         <h1 className="text-5xl text-center">AI Workout Generator</h1>
         <div className="avatar">
           <div className="w-24 rounded-xl">
-            <img src={something} alt="Avatar" />
+            <img src={faviconImage} alt="Avatar" />
           </div>
         </div>
       </div>
