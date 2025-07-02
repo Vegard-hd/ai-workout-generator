@@ -34,6 +34,16 @@
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };
     </script>
+    <script defer>
+      let hasScrolled = false;
+
+      window.addEventListener("scroll", () => {
+        if (!hasScrolled) {
+          plausible("scroll");
+          hasScrolled = true;
+        }
+      });
+    </script>
 
     <title>Outdoor workout generator AI</title>
   </head>

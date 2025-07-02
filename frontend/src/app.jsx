@@ -66,14 +66,16 @@ export function App() {
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => {
+          plausible("configureWorkout");
           setShowCreateWorkoutOptions(true);
         }}
         style={{ cursor: "pointer" }}
         className={`
           flex place-self-center p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
-          bg-primary text-primary-content rounded-full transition-transform duration-200 ${
-            showCreateWorkoutOptions ? " hidden" : ""
-          } `}
+          bg-primary text-primary-content rounded-full transition-transform duration-200
+          ${isHovered ? "bg-success text-success-content" : ""}
+          
+          ${showCreateWorkoutOptions ? " hidden" : ""} `}
         type="button" // Change to type="button" to prevent form submission if it's inside a form
       >
         Create new workout!
