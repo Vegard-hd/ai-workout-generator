@@ -2,7 +2,12 @@
 FROM oven/bun:1.2.17-debian AS build
 
 WORKDIR /app
-ARG VITE_BACKEND_API_URL=https://outdoorworkoutgenerator.dev
+
+# Set the environment variable for the build stage
+ARG VITE_BACKEND_API_URL=localhost:3014
+ARG NODE_ENV=development
+
+
 ENV VITE_BACKEND_API_URL=$VITE_BACKEND_API_URL
 
 # Copy and install frontend dependencies
