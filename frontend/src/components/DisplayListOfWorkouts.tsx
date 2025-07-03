@@ -1,14 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { useState } from "preact/hooks";
-
-import { TrainingPlanTimeline } from "./partials/TrainingPlanTimeline";
-
 export function DisplayListOfWorkouts() {
   if (!import.meta.env.VITE_BACKEND_API_URL)
     throw new Error("Missing env.VITE_BACKEND_API_URL  from build process");
-  const [hoveredIndex, setHoveredIndex] = useState(false);
-  const getColorForZone = (zone) => {
+  const getColorForZone = (zone: number) => {
     const colors = {
       1: "#6B7280", // gray-500
       2: "#3B82F6", // blue-500

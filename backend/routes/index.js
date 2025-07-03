@@ -16,8 +16,7 @@ const pocketBaseService = new PocketBaseService();
 router.get("/workout", async (req, res, next) => {
   try {
     const workouts = await pocketBaseService.getMostPopularWorkouts();
-    console.dir(workouts);
-    res.json(workouts);
+    res.status(200).json(workouts);
   } catch (error) {
     next(error);
   }
@@ -26,7 +25,6 @@ router.get("/workout/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const workoutData = await pocketBaseService.getOneWithId(id);
-    console.dir(workoutData);
     res.json(workoutData);
   } catch (error) {
     next(error);
@@ -73,8 +71,6 @@ const aiLimiter = rateLimit({
   // skip: (req) => req.url === "/api/like",
   // store: ... , // Redis, Memcached, etc. See below.
 });
-
-// Apply the rate limiting middleware to all requests.
 
 router.post(
   "/workout",
