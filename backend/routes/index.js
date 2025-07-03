@@ -34,7 +34,6 @@ router.get("/workout/:id", async (req, res, next) => {
 router.post("/like", async (req, res, next) => {
   try {
     const { workoutId } = req.body;
-    console.log("workoutid is ... ", typeof workoutId?.workoutId);
     if (typeof workoutId?.workoutId !== "string") {
       throw new Error("The workout id must be a valid string ");
     }
@@ -93,7 +92,7 @@ router.post(
         workoutDetilsObj.activity,
       ).then((data) => data.trim());
 
-      // console.log(geminiAiResult);
+
       const mockResult = [
         {
           duration: 5,

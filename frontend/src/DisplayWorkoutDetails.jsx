@@ -4,10 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 export function DisplayWorkoutDetails() {
   const { workoutId } = useParams();
-  console.log(
-    "vite backend URL is .... ",
-    import.meta.env.VITE_BACKEND_API_URL
-  );
+
   const { data, isLoading, error } = useQuery({
     queryKey: ["workout", workoutId],
     queryFn: () =>

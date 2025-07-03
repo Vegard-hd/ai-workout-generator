@@ -51,7 +51,6 @@ export function DisplayWorkout(workoutData: {
       </span>
     );
   }
-  console.log(data);
-  console.dir(data);
+
   return navigate(`/workouts/${data?.id}`);
 }

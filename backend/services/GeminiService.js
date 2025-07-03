@@ -47,7 +47,7 @@ class GeminiService {
     }
   }
   async generateWorkoutName(workoutFocus = "", activityType = "") {
-    console.log("Workoutfocus is .... ", workoutFocus);
+
     try {
       const prompt = `Generate a random unique name for a ${activityType.toLowerCase().trim()} workout.
        The name should be funny and match the workout focus of ${workoutFocus.toLowerCase().trim()}, the name does not have to make sense or be a real word. 

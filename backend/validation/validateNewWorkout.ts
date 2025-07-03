@@ -41,7 +41,7 @@ export function validateNewWorkout(
   next: NextFunction,
 ) {
   const { activity, duration, focus, freshness, motivation } = req.body;
-  console.log(activity, duration, focus, freshness, motivation);
+
   if (!activity || !duration || !focus || !freshness || !motivation) {
     return res.status(409).json({ error: "Missing required workout options" });
   }
@@ -54,7 +54,7 @@ export function validateNewWorkout(
     return res
       .status(409)
       .json({ error: "Duration provided in workout is invalid" });
-  console.log(durationString, activityString);
+
 
   const activityIsValid = activityOptions.includes(activityString);
   const focusIsValid = focusOptions.includes(focusString);
