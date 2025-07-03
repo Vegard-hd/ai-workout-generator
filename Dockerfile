@@ -3,7 +3,7 @@ FROM oven/bun:1.2.17-debian AS build
 
 WORKDIR /app
 
-ENV VITE_BACKEND_API_URL=${VITE_BACKEND_API_URL}
+ENV VITE_BACKEND_API_URL=$VITE_BACKEND_API_URL
 
 # Copy and install frontend dependencies
 COPY frontend/package*.json ./
