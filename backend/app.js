@@ -1,3 +1,5 @@
+
+import helmet from "helmet";
 import createError from "http-errors";
 import express, { json, urlencoded, static as static_ } from "express";
 import { fileURLToPath } from "url";
@@ -33,7 +35,7 @@ if (!isNodeEnvProduction()) {
 }
 
 app.use(logger(isNodeEnvProduction() ? "short" : "dev"));
-
+app.use(helmet());
 app.use(json());
 app.use(urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
 app.use(cookieParser());
