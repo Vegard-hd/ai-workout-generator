@@ -51,6 +51,7 @@ app.use(
             // Hash for the second inline script
             "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='"
           ],
+          connectSrc: ["'self'", "https://required.vegardhaglund.website"],
           // Optionally specify other directives, e.g. for styles:
           styleSrc: ["'self'"]
         }
