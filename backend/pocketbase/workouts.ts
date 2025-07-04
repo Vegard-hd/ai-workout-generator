@@ -43,6 +43,7 @@ export class PocketBaseService {
     return await this.pb
       .collection("Workouts")
       .getFullList({
+        perPage: 12,
         sort: "-likes",
       })
       .catch((err) => {

@@ -9,6 +9,8 @@ export function WorkoutGenerator({ workoutData }) {
     <>
       <section>
         {!displayWorkout && (
+            <div className="flex place-self-center justify-center justify-items-center text-center">
+
           <button
             onMouseOver={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -26,6 +28,7 @@ export function WorkoutGenerator({ workoutData }) {
           >
             Generate workout!
           </button>
+            </div>
         )}
         <div className="divider"></div>
       </section>

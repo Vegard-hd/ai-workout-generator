@@ -53,7 +53,7 @@ export function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center gap-x-5 p-3">
+      <div className="flex justify-center items-center ">
         <h1 className="text-5xl text-center">AI Workout Generator</h1>
         <div className="avatar">
           <div className="w-24 rounded-xl">
@@ -61,6 +61,7 @@ export function App() {
           </div>
         </div>
       </div>
+  <div className="flex justify-center items-center">
 
       <button
         onMouseOver={() => setIsHovered(true)}
@@ -71,15 +72,16 @@ export function App() {
         }}
         style={{ cursor: "pointer" }}
         className={`
-          flex place-self-center p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
+          flex  place-self-center p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
           bg-primary text-primary-content rounded-full transition-transform duration-200
           ${isHovered ? "bg-success text-success-content" : ""}
           
           ${showCreateWorkoutOptions ? " hidden" : ""} `}
-        type="button" // Change to type="button" to prevent form submission if it's inside a form
+        type="button"
       >
         Create new workout!
       </button>
+  </div>
 
       <div
         className={`divider ${showCreateWorkoutOptions ? " hidden" : ""}`}
