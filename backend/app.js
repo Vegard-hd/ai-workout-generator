@@ -44,9 +44,8 @@ app.use(
             "'self'",
             // External analytics domain
             "https://required.vegardhaglund.website",
+            "https://required.vegardhaglund.website/js/script.pageview-props.tagged-events.js",
             // If you want to allow inline scripts, you can use a hash or a nonce
-            "'strict-dynamic'",
-            "'unsafe-inline'", // Also required for older browsers
 
           ],
           // Optionally specify other directives, e.g. for styles:
