@@ -35,7 +35,25 @@ if (!isNodeEnvProduction()) {
 }
 
 app.use(logger(isNodeEnvProduction() ? "short" : "dev"));
-app.use(helmet());
+app.use(
+    helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: [
+            "'self'",
+            // External analytics domain
+            "https://required.vegardhaglund.website",
+            // If you want to allow inline scripts, you can use a hash or a nonce:
+            "'sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c='"
+          ],
+          // Optionally specify other directives, e.g. for styles:
+          styleSrc: ["'self'"]
+        }
+      }
+    })
+);
+
 app.use(json());
 app.use(urlencoded({ extended: true })); // Add this line to parse URL-encoded bodies
 app.use(cookieParser());
