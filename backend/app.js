@@ -45,8 +45,11 @@ app.use(
             // External analytics domain
             "https://required.vegardhaglund.website",
             // The exact SRI hash that must match your script:
-            "'sha256-vWy/FtNaC22Y9pupfppguZSbSAYgSEtIRR8f2eutk2w='"
+            "'sha256-vWy/FtNaC22Y9pupfppguZSbSAYgSEtIRR8f2eutk2w='",
 
+            "'sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c='",
+            // Hash for the second inline script
+            "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='"
           ],
           // Optionally specify other directives, e.g. for styles:
           styleSrc: ["'self'"]
