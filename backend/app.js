@@ -44,8 +44,8 @@ app.use(
             "'self'",
             // External analytics domain
             "https://required.vegardhaglund.website",
-            "https://required.vegardhaglund.website/js/script.pageview-props.tagged-events.js",
-            // If you want to allow inline scripts, you can use a hash or a nonce
+            // The exact SRI hash that must match your script:
+            "'sha256-vWy/FtNaC22Y9pupfppguZSbSAYgSEtIRR8f2eutk2w='"
 
           ],
           // Optionally specify other directives, e.g. for styles:
