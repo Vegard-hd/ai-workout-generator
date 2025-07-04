@@ -45,7 +45,7 @@ app.use(
             // External analytics domain
             "https://required.vegardhaglund.website",
             // If you want to allow inline scripts, you can use a hash or a nonce:
-            "'sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c='"
+            "sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk="
           ],
           // Optionally specify other directives, e.g. for styles:
           styleSrc: ["'self'"]
