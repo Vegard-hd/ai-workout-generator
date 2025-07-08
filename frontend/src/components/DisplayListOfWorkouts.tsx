@@ -40,9 +40,17 @@ export function DisplayListOfWorkouts() {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
+  const workoutList = data?.items ? data.items : null;
+  if (!workoutList) {
+    return (
+      <span>
+        <h1 className="text-2xl text-center">No workouts found</h1>
+      </span>
+    );
+  }
   return (
     <>
-      {data.map(
+      {workoutList.map(
         (
           element: { workout: string; duration: string; title: string },
           index

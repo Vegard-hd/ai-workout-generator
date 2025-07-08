@@ -8,7 +8,7 @@ const userInput = JSON.parse(
 const BASE_URL = "http://localhost:3008";
 
 test("should successfully generate a workout via POST request", async () => {
-  console.log(userInput);
+
   const response = await fetch(`${BASE_URL}/api/generateworkout`, {
     method: "POST",
     headers: {
@@ -16,7 +16,7 @@ test("should successfully generate a workout via POST request", async () => {
     },
     body: JSON.stringify(userInput), // Send the userInput object as a JSON string
   });
-  console.log(await response);
+
   expect(response.ok).toBe(true); // Check if the request was successful (status 200-299)
 
   // You can add more assertions here, for example, to check the response body:

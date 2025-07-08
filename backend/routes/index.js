@@ -16,6 +16,7 @@ const pocketBaseService = new PocketBaseService();
 router.get("/workout", async (req, res, next) => {
   try {
     const workouts = await pocketBaseService.getMostPopularWorkouts();
+    console.dir(workouts);
     res.status(200).json(workouts);
   } catch (error) {
     next(error);
@@ -91,7 +92,6 @@ router.post(
         workoutDetilsObj.focus,
         workoutDetilsObj.activity,
       ).then((data) => data.trim());
-
 
       const mockResult = [
         {
