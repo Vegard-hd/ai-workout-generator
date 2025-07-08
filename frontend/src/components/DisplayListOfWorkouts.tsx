@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 export function DisplayListOfWorkouts() {
+  const navigate = useNavigate();
   if (!import.meta.env.VITE_BACKEND_API_URL)
     throw new Error("Missing env.VITE_BACKEND_API_URL  from build process");
   const getColorForZone = (zone: number) => {
@@ -52,7 +54,12 @@ export function DisplayListOfWorkouts() {
     <>
       {workoutList.map(
         (
-          element: { workout: string; duration: string; title: string },
+          element: {
+            workout: string;
+            duration: string;
+            title: string;
+            id: string;
+          },
           index
         ) => {
           const parsedBlocks = JSON.parse(element.workout);
@@ -99,6 +106,7 @@ export function DisplayListOfWorkouts() {
                   })}
                 </div>
                 <button
+                  onClick={() => navigate(`/workouts/${element?.id}`)}
                   className={`btn btn-primary w-1/8 flex place-self-center mb-4 rounded-full `}
                 >
                   View details
