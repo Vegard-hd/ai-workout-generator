@@ -16,7 +16,6 @@ const pocketBaseService = new PocketBaseService();
 router.get("/workout", async (req, res, next) => {
   try {
     const workouts = await pocketBaseService.getMostPopularWorkouts();
-    console.dir(workouts);
     res.status(200).json(workouts);
   } catch (error) {
     next(error);
@@ -41,7 +40,6 @@ router.post("/like", async (req, res, next) => {
     return await pocketBaseService
       .incrementLike(workoutId?.workoutId)
       .then((data) => {
-        console.dir(data);
         return res.status(201).json({ success: true, data: data });
       })
       .catch((err) => {
@@ -96,8 +94,6 @@ router.post(
       const generatedWorkout =
         await GeminiService.generateWorkout(workoutDetilsObj);
 
-      console.log(generatedWorkout);
-
       res.header("Content-Type: application/json");
 
       const workoutDuration = await parseTrainingData(generatedWorkout);
@@ -110,7 +106,6 @@ router.post(
           likes: 1,
         })
         .then((data) => {
-          console.dir(data);
           return res.status(201).json({ success: true, id: data.id });
         })
         .catch((err) => {
