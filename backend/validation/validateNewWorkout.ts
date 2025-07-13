@@ -55,7 +55,6 @@ export function validateNewWorkout(
       .status(409)
       .json({ error: "Duration provided in workout is invalid" });
 
-
   const activityIsValid = activityOptions.includes(activityString);
   const focusIsValid = focusOptions.includes(focusString);
   const freshnessIsValid = freshnessOptions.includes(freshnessString);

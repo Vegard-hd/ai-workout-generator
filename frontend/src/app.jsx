@@ -61,27 +61,26 @@ export function App() {
           </div>
         </div>
       </div>
-  <div className="flex justify-center items-center">
-
-      <button
-        onMouseOver={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => {
-          plausible("configureWorkout");
-          setShowCreateWorkoutOptions(true);
-        }}
-        style={{ cursor: "pointer" }}
-        className={`
+      <div className="flex justify-center items-center">
+        <button
+          onMouseOver={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={() => {
+            plausible("configureWorkout");
+            setShowCreateWorkoutOptions(true);
+          }}
+          style={{ cursor: "pointer" }}
+          className={`
           flex  place-self-center p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
           bg-primary text-primary-content rounded-full transition-transform duration-200
           ${isHovered ? "bg-success text-success-content" : ""}
           
           ${showCreateWorkoutOptions ? " hidden" : ""} `}
-        type="button"
-      >
-        Create new workout!
-      </button>
-  </div>
+          type="button"
+        >
+          Create new workout!
+        </button>
+      </div>
 
       <div
         className={`divider ${showCreateWorkoutOptions ? " hidden" : ""}`}

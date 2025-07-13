@@ -1,18 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-export function DisplayWorkout(workoutData: {
-  activity: string;
-  duration: string;
-  focus: string;
-  freshness: string;
-  motivation: string;
-}) {
-  const activity = workoutData?.activity ?? "cycling";
-  const duration = workoutData?.duration ?? "20";
-  const focus = workoutData?.focus ?? "recovery";
-  const freshness = workoutData?.freshness ?? "Fully Recovered";
-  const motivation = workoutData?.motivation ?? "Motivated";
+export function DisplayWorkout({ workoutData }) {
+  const activity = workoutData.activity ?? "Cycling";
+  const duration = workoutData.duration ?? 20;
+  const focus = workoutData.focus ?? "Recovery";
+  const freshness = workoutData.freshness ?? "Fully Recovered";
+  const motivation = workoutData.motivation ?? "Motivated";
   const navigate = useNavigate();
 
   if (!import.meta.env.VITE_BACKEND_API_URL)
