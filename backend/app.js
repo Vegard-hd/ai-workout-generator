@@ -2,7 +2,7 @@ import helmet from "helmet";
 import createError from "http-errors";
 import express, { json, urlencoded, static as static_ } from "express";
 import { fileURLToPath } from "url";
-
+import compression from "compression";
 import { join, dirname, resolve } from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
@@ -51,11 +51,21 @@ app.use(
           // Hash for the second inline script
           "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='",
         ],
-        connectSrc: ["'self'", "https://required.vegardhaglund.website"],
+        connectSrc: [
+          "'self'",
+          "https://required.vegardhaglund.website",
+          "https://vegardhaglund.dev",
+        ],
         // Optionally specify other directives, e.g. for styles:
         styleSrc: ["'self'"],
       },
     },
+  }),
+);
+
+app.use(
+  compression({
+    level: 8,
   }),
 );
 
