@@ -97,7 +97,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(join(__dirname, "public")));
 
 // dist files generated from vite build
-const distDir = resolve(__dirname, "./frontend/dist");
+const distDir = isNodeEnvProduction()
+  ? resolve(__dirname, "./frontend/dist")
+  : resolve(__dirname, "../frontend/dist");
 
 // Serve all static assets in dist
 app.use(static_(distDir));

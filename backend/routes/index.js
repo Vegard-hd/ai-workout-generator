@@ -93,36 +93,19 @@ router.post(
         workoutDetilsObj.activity,
       ).then((data) => data.trim());
 
-      const mockResult = [
-        {
-          duration: 5,
-          zone: 1,
-          description: "Easy warm-up, gentle pedaling.",
-        },
-        {
-          duration: 5,
-          zone: 2,
-          description: "Light spinning, focusing on smooth pedal strokes.",
-        },
-        {
-          duration: 5,
-          zone: 1,
-          description: "Active recovery, very light resistance.",
-        },
-        {
-          duration: 5,
-          zone: 2,
-          description: "Increase cadence slightly, maintain low resistance.",
-        },
-      ];
+      const generatedWorkout =
+        await GeminiService.generateWorkout(workoutDetilsObj);
+
+      console.log(generatedWorkout);
+
       res.header("Content-Type: application/json");
 
-      const workoutDuration = await parseTrainingData(mockResult);
+      const workoutDuration = await parseTrainingData(generatedWorkout);
       return await pocketBaseService
         .createWorkout({
           title: JSON.stringify(workoutName),
           duration: JSON.stringify(workoutDuration),
-          workout: JSON.stringify(mockResult),
+          workout: JSON.stringify(generatedWorkout),
           details: JSON.stringify(workoutDetilsObj),
           likes: 1,
         })
