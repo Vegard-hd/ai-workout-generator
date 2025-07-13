@@ -62,6 +62,7 @@ app.use(
           "'self'",
           "https://vegardhaglund.dev",
           "https://outdoorworkoutgenerator.app",
+          "https://outdoorworkoutgenerator.app/android-chrome-192x192.png",
         ],
       },
     },
