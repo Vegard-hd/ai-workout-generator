@@ -33,9 +33,18 @@ if (!isNodeEnvProduction()) {
   app.use(cors(corsOptions));
 }
 
+// CORS for the favicon route
+app.use(
+  "/android-chrome-192x192.png",
+  cors({
+    origin: "https://vegardhaglund.dev",
+  }),
+);
+
 app.use(logger(isNodeEnvProduction() ? "short" : "dev"));
 app.use(
   helmet({
+    crossOriginResourcePolicy: false,
     contentSecurityPolicy: {
       directives: {
         "defaultSrc": ["'self'"],
@@ -83,12 +92,6 @@ app.use(cookieParser());
 app.use("/api", indexRouter);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-//CORS to allow image to be used on portfolio site
-app.use("/android-chrome-192x192.png", (req, res, next) => {
-  res.set("Access-Control-Allow-Origin", "https://vegardhaglund.dev");
-  next();
-});
 
 // public files and node modules
 app.use(express.static(join(__dirname, "public")));
