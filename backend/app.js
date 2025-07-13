@@ -84,6 +84,12 @@ app.use("/api", indexRouter);
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+//CORS to allow image to be used on portfolio site
+app.use("/android-chrome-192x192.png", (req, res, next) => {
+  res.set("Access-Control-Allow-Origin", "https://vegardhaglund.dev");
+  next();
+});
+
 // public files and node modules
 app.use(express.static(join(__dirname, "public")));
 
