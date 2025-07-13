@@ -38,8 +38,8 @@ app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
+        "defaultSrc": ["'self'"],
+        "scriptSrc": [
           "'self'",
           // External analytics domain
           "https://required.vegardhaglund.website",
@@ -51,13 +51,18 @@ app.use(
           // Hash for the second inline script
           "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='",
         ],
-        connectSrc: [
+        "connectSrc": [
           "'self'",
           "https://required.vegardhaglund.website",
           "https://vegardhaglund.dev",
         ],
         // Optionally specify other directives, e.g. for styles:
-        styleSrc: ["'self'"],
+        "styleSrc": ["'self'"],
+        "img-src": [
+          "'self'",
+          "https://vegardhaglund.dev",
+          "https://outdoorworkoutgenerator.app",
+        ],
       },
     },
   }),
