@@ -1,6 +1,17 @@
 import { useState } from "preact/hooks";
+import type { VNode } from "preact";
 
-export function MyBtn({ value, onUpdate, callBackFromOptions, minutes }) {
+export function MyBtn({
+  value,
+  onUpdate,
+  callBackFromOptions,
+  minutes,
+}: {
+  value: string | number;
+  onUpdate: Function;
+  callBackFromOptions: string | number;
+  minutes?: string | undefined;
+}) {
   const [isHovered, setIsHovered] = useState(false);
   return (
     <button

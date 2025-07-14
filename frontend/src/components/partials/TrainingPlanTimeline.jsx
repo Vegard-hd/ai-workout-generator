@@ -1,6 +1,9 @@
 import { useState } from "preact/hooks";
 import { useNavigate } from "react-router-dom";
 import { LikeButton } from "./LikeButton";
+
+import { useEffect } from "preact/hooks";
+
 export function TrainingPlanTimeline({
   blocks,
   totalDuration,
@@ -8,8 +11,16 @@ export function TrainingPlanTimeline({
   title,
 }) {
   const navigate = useNavigate();
+
+  const [navigateMainPage, setNavigateMainPage] = useState(false);
+
   const [isHovered, setIsHovered] = useState(false);
   const location = window.location.pathname.split("/").at(-1);
+
+  useEffect(() => {
+    if (navigateMainPage) navigate("/");
+    return () => setNavigateMainPage(false);
+  }, [navigateMainPage]);
 
   const getColorForZone = (zone) => {
     const colors = {
@@ -82,7 +93,7 @@ export function TrainingPlanTimeline({
       <button
         onMouseOver={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => navigate("/")}
+        onClick={() => setNavigateMainPage(true)}
         style={{ cursor: "pointer" }}
         className={`
           flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
