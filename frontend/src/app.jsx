@@ -47,7 +47,7 @@ export function App() {
       ></div>
 
       <h2
-        className={`text-center text-pretty text-base-content mt-15 text-2xl transition-transform duration-200
+        className={`text-center text-pretty text-base-content mt-15 text-2xl md:text-3xl xl:text-4xl transition-transform duration-200
         ${showCreateWorkoutOptions ? " hidden" : ""} }
         
         `}

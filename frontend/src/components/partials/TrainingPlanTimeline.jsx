@@ -2,6 +2,8 @@ import { useState } from "preact/hooks";
 import { useNavigate } from "react-router-dom";
 import { LikeButton } from "./LikeButton";
 
+import { MyBtn } from "./MyBtn";
+
 import { useEffect } from "preact/hooks";
 
 export function TrainingPlanTimeline({
@@ -11,6 +13,10 @@ export function TrainingPlanTimeline({
   title,
 }) {
   const navigate = useNavigate();
+
+  // const [isHovered, setIsHovered] = useState(false);
+
+  const [displayWorkoutZoom, setDisplayWorkoutZoom] = useState(1);
 
   const [navigateMainPage, setNavigateMainPage] = useState(false);
 
@@ -63,32 +69,69 @@ export function TrainingPlanTimeline({
           {parsedDetails.motivation ?? "N/A"}
         </li>
       </ul>
-      <div className=" flex place-self-center w-11/12  lg:w-4/5 h-20 rounded overflow-hidden mb-10 mt-10 ">
-        {parsedBlocks.map((block, index) => {
-          // Calculate percentage width based on duration
-          const widthPercentage =
-            (block.duration / parsedDuration.totalDuration) * 100;
-          return (
-            <div
-              key={index}
-              className="tooltip h-full flex items-center justify-center text-center"
-              style={{
-                width: `${widthPercentage}%`,
-                backgroundColor: block.color || getColorForZone(block.zone),
-                borderRight:
-                  index < blocks.length - 1 ? "1px solid white" : "none",
-              }}
-            >
-              <div className="p-2">
-                <div className="font-bold">
-                  {block.name || `Zone ${block.zone}`}
+      <div className="place-self-center xl:w-11/12 w-full overflow-x-auto mb-10 mt-10">
+        <div className="flex h-20 rounded">
+          {parsedBlocks.map((block, index) => {
+            // Calculate width in pixels based on duration. e.g., 10px per minute
+            let widthInPixels = block.duration * 20;
+
+            const widthPercentage =
+              (block.duration / parsedDuration.totalDuration) *
+              100 *
+              displayWorkoutZoom;
+
+            console.log(widthInPixels);
+            return (
+              <div
+                key={index}
+                className="tooltip h-full flex-shrink-0 flex items-center justify-center text-center"
+                style={{
+                  width: `${widthPercentage}%`,
+                  backgroundColor: block.color || getColorForZone(block.zone),
+                  borderRight:
+                    index < parsedBlocks.length - 1
+                      ? "1px solid white"
+                      : "none",
+                }}
+              >
+                <div className="p-2">
+                  <div className="font-bold text-sm text-white">
+                    {block.name || `Zone ${block.zone}`}
+                  </div>
+                  <div className="text-sm text-white">{block.duration} min</div>
                 </div>
-                <div className="text-sm">{block.duration} min</div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
+      <section className="flex justify-end mt-4 space-x-2 me-5 md:me-15 xl:me-30 pb-15">
+        <button
+          onClick={() => {
+            setDisplayWorkoutZoom(displayWorkoutZoom + 0.1);
+          }}
+          className="btn rounded-full  font-medium  shadow-lg  "
+        >
+          Zoom in
+        </button>
+        <button
+          onClick={() => {
+            setDisplayWorkoutZoom(displayWorkoutZoom - 0.1);
+          }}
+          className="btn rounded-full  font-medium  shadow-lg  "
+        >
+          Zoom out
+        </button>
+        <button
+          onClick={() => {
+            setDisplayWorkoutZoom(1);
+          }}
+          className="btn  rounded-full  font-medium  shadow-lg "
+        >
+          Reset zoom
+        </button>
+      </section>
+
       <LikeButton workoutId={location} />
       <button
         onMouseOver={() => setIsHovered(true)}

@@ -69,14 +69,14 @@ export function DisplayListOfWorkouts() {
             <>
               <div
                 key={index}
-                className={`bg-gradient-to-r from-base-100 to-base-300 shadow-2xl rounded-full w-11/12 flex flex-col place-self-center mb-10
+                className={`to-base-300 shadow-2xl/40 rounded-2xl xl:w-11/12 w-screen  flex flex-col place-self-center mb-10
               
                   `}
               >
-                <h1 className="text-nowrap text-3xl text-center text-base-content">
+                <h1 className="text-nowrap text-2xl md:text-3xl xl:text-4xl text-center text-base-content mb-5 mt-3">
                   {parsedTitle}
                 </h1>
-                <div className=" flex place-self-center w-11/12  lg:w-4/5 h-20 rounded overflow-hidden mb-10 mt-1 ">
+                <div className=" flex place-self-center xl:w-11/12 w-screen h-20 rounded overflow-hidden mb-10 mt-1 ">
                   {parsedBlocks.map((block, index) => {
                     // Calculate percentage width based on duration
                     const widthPercentage =
@@ -84,7 +84,7 @@ export function DisplayListOfWorkouts() {
                     return (
                       <div
                         key={index}
-                        className="tooltip h-full flex items-center justify-center text-center"
+                        className="tooltip h-full flex items-center justify-center text-center text-sm"
                         style={{
                           width: `${widthPercentage}%`,
                           backgroundColor:
@@ -96,7 +96,7 @@ export function DisplayListOfWorkouts() {
                         }}
                       >
                         <div className="p-2">
-                          <div className="font-bold">
+                          <div className="font-bold  text-sm">
                             {block.name || `Zone ${block.zone}`}
                           </div>
                           <div className="text-sm">{block.duration} min</div>
@@ -107,7 +107,7 @@ export function DisplayListOfWorkouts() {
                 </div>
                 <button
                   onClick={() => navigate(`/workouts/${element?.id}`)}
-                  className={`btn btn-primary w-1/8 flex place-self-center mb-4 rounded-full `}
+                  className={`btn btn-primary btn-md md:btn-lg  flex place-self-center mb-4 rounded-full `}
                 >
                   View details
                 </button>

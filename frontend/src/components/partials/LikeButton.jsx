@@ -29,6 +29,7 @@ export function LikeButton() {
       onMouseEnter={() => setIsLikeBtnHovered(true)}
       onMouseLeave={() => setIsLikeBtnHovered(false)}
       onClick={handleLike}
+      style={{ cursor: "pointer" }}
       disabled={likeMutation.isPending || likeMutation.isSuccess}
       className={`flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
         bg-primary text-primary-content rounded-full min-w-35 place-content-center transition-colors duration-200
