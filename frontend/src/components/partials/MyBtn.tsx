@@ -37,10 +37,9 @@ export function MyBtn({
       className={`px-6 py-3 rounded-full  font-medium 
             ${
               value === callBackFromOptions
-                ? " shadow-lg bg-secondary text-secondary-content"
-                : " text-neutral-content bg-neutral/70"
+                ? " shadow-lg bg-secondary text-secondary-content "
+                : " text-neutral-content bg-neutral/70 button-hover-effect-strong"
             }
-            ${isHovered ? "bg-secondary/30 text-secondary-content" : ""}
             `}
     >
       {callBackFromOptions} {(minutes = minutes ?? "")}

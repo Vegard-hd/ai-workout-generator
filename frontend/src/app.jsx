@@ -7,7 +7,6 @@ import { useState } from "preact/hooks";
 import faviconImage from "../src/assets/android-chrome-192x192.png";
 
 export function App() {
-  const [isHovered, setIsHovered] = useState(false);
   const [showCreateWorkoutOptions, setShowCreateWorkoutOptions] =
     useState(false);
 
@@ -23,8 +22,6 @@ export function App() {
       </div>
       <div className="flex justify-center items-center">
         <button
-          onMouseOver={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
           onClick={() => {
             plausible("configureWorkout");
             setShowCreateWorkoutOptions(true);
@@ -32,8 +29,7 @@ export function App() {
           style={{ cursor: "pointer" }}
           className={`
           flex  place-self-center p-5 text-xl mt-15 mb-15 font-bold border-3 border-primary-content 
-          bg-primary text-primary-content rounded-full transition-transform duration-200
-          ${isHovered ? "bg-success text-success-content" : ""}
+          bg-primary text-primary-content rounded-full transition-transform duration-200 button-hover-effect 
           
           ${showCreateWorkoutOptions ? " hidden" : ""} `}
           type="button"

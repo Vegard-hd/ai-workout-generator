@@ -134,15 +134,11 @@ export function TrainingPlanTimeline({
 
       <LikeButton workoutId={location} />
       <button
-        onMouseOver={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
         onClick={() => setNavigateMainPage(true)}
         style={{ cursor: "pointer" }}
         className={`
           flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
-          bg-primary text-primary-content rounded-full ${
-            isHovered ? "bg-success text-success-content" : ""
-          }
+          bg-primary text-primary-content rounded-full button-hover-effect 
           `}
         type="button" // Change to type="button" to prevent form submission if it's inside a form
       >

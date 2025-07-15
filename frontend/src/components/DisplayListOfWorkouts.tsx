@@ -107,7 +107,7 @@ export function DisplayListOfWorkouts() {
                 </div>
                 <button
                   onClick={() => navigate(`/workouts/${element?.id}`)}
-                  className={`btn btn-primary btn-md md:btn-lg  flex place-self-center mb-4 rounded-full `}
+                  className={`btn btn-primary btn-md md:btn-lg  flex place-self-center mb-4 rounded-full button-hover-effect `}
                 >
                   View details
                 </button>

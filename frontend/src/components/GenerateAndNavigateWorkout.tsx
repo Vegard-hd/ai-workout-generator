@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "preact/hooks";
 
 export function GenerateAndNavigateWorkout({ workoutData }) {
-  const [isHovered, setIsHovered] = useState(false);
   const [displayWorkout, setDisplayWorkout] = useState(false);
 
   const activity = workoutData.activity ?? "Cycling";
@@ -65,19 +64,15 @@ export function GenerateAndNavigateWorkout({ workoutData }) {
         {!displayWorkout && (
           <div className="flex place-self-center justify-center justify-items-center text-center">
             <button
-              onMouseOver={() => setIsHovered(true)}
-              onMouseLeave={() => setIsHovered(false)}
               onClick={() => {
                 setDisplayWorkout(true);
                 handleButtonClick();
               }}
               style={{ cursor: "pointer" }}
               className={`
-          flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
-          bg-primary text-primary-content rounded-full ${
-            isHovered ? "bg-success text-success-content" : ""
-          }
-          `}
+                flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
+                bg-primary text-primary-content rounded-full button-hover-effect
+              `}
               type="button" // Change to type="button" to prevent form submission if it's inside a form
             >
               Generate workout!

@@ -1,9 +1,7 @@
-import { useState } from "preact/hooks";
 import { useMutation } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 export function LikeButton() {
   const workoutId = useParams();
-  const [isLikeBtnHovered, setIsLikeBtnHovered] = useState(false);
   const likeMutation = useMutation({
     mutationFn: async () => {
       const res = await fetch(
@@ -26,14 +24,12 @@ export function LikeButton() {
 
   return (
     <button
-      onMouseEnter={() => setIsLikeBtnHovered(true)}
-      onMouseLeave={() => setIsLikeBtnHovered(false)}
       onClick={handleLike}
       style={{ cursor: "pointer" }}
       disabled={likeMutation.isPending || likeMutation.isSuccess}
       className={`flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
         bg-primary text-primary-content rounded-full min-w-35 place-content-center transition-colors duration-200
-        ${isLikeBtnHovered ? "bg-success text-success-content" : ""}
+        button-hover-effect 
         ${
           likeMutation.isPending || likeMutation.isSuccess
             ? "opacity-50 cursor-not-allowed"
