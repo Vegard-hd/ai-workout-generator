@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import questionInfo from "../assets/google-icon-info.svg";
+import questionInfo from "../assets/google-icon-info.svg?sha256=BsI/jr4OA3oxj0EFzl6AANhrUreCKpUm6DpV44Z6UFY=";
 
 export function DisplayListOfWorkouts() {
   const navigate = useNavigate();

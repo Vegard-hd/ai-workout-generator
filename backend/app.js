@@ -59,6 +59,7 @@ app.use(
           "'sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c='",
           // Hash for the second inline script
           "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='",
+          "'sha256=BsI/jr4OA3oxj0EFzl6AANhrUreCKpUm6DpV44Z6UFY='",
         ],
         "connectSrc": [
           "'self'",
