@@ -45,37 +45,66 @@ export function TrainingPlanTimeline({
   const parsedTitle = JSON.parse(title);
   return (
     <>
-      <a data-tooltip-id="my-tooltip" data-tooltip-content="Hello world!">
-        ◕‿‿◕
-      </a>
       <Tooltip id="my-tooltip" />
 
-      <h1 className="text-center text-xl sm:text-3xl xl:text-5xl p-8 text-nowrap">
-        {parsedTitle}
-      </h1>
-      <ul className="list-none text-center space-y-2">
-        <li>
-          <span className="font-semibold">Activity:</span>{" "}
-          {parsedDetails.activity ?? "N/A"}
-        </li>
-        <li>
-          <span className="font-semibold">Duration:</span>{" "}
-          {parsedDetails.duration ?? "N/A"}
-        </li>
-        <li>
-          <span className="font-semibold">Focus:</span>{" "}
-          {parsedDetails.focus ?? "N/A"}
-        </li>
-        <li>
-          <span className="font-semibold">Freshness:</span>{" "}
-          {parsedDetails.freshness ?? "N/A"}
-        </li>
-        <li>
-          <span className="font-semibold">Motivation:</span>{" "}
-          {parsedDetails.motivation ?? "N/A"}
-        </li>
-      </ul>
-      <div className="place-self-center xl:w-11/12 w-full overflow-x-auto mb-10 mt-10">
+      <section className="grid grid-flow-col grid-rows-2">
+        <div>
+          <h1 className="text-center text-xl sm:text-3xl xl:text-5xl text-nowrap font-semibold">
+            {parsedTitle}
+          </h1>
+          <ul className="list-none text-center space-y-2">
+            <li>
+              <span className="font-semibold">Activity:</span>{" "}
+              {parsedDetails.activity ?? "N/A"}
+            </li>
+            <li>
+              <span className="font-semibold">Duration:</span>{" "}
+              {parsedDetails.duration ?? "N/A"}
+            </li>
+            <li>
+              <span className="font-semibold">Focus:</span>{" "}
+              {parsedDetails.focus ?? "N/A"}
+            </li>
+            <li>
+              <span className="font-semibold">Freshness:</span>{" "}
+              {parsedDetails.freshness ?? "N/A"}
+            </li>
+            <li>
+              <span className="font-semibold">Motivation:</span>{" "}
+              {parsedDetails.motivation ?? "N/A"}
+            </li>
+          </ul>
+        </div>
+        <div className="flex flex-col place-items-end-safe">
+          <h2 className="text-sm xl:text-xl font-semibold pe-25 ">
+            Training Zones
+          </h2>
+          <ul className="text-base-content text-xs xl:text-sm text-pretty pe-10">
+            <li>
+              <span style={{ color: getColorForZone(1) }}>Z1:</span> Recovery
+              (≤55% FTP or very easy pace)
+            </li>
+            <li>
+              <span style={{ color: getColorForZone(2) }}>Z2:</span> Endurance
+              (56-75% FTP or easy pace)
+            </li>
+            <li>
+              <span style={{ color: getColorForZone(3) }}>Z3:</span> Tempo
+              (76-90% FTP or moderate pace)
+            </li>
+            <li>
+              <span style={{ color: getColorForZone(4) }}>Z4:</span> Threshold
+              (91-105% FTP or hard pace)
+            </li>
+            <li>
+              <span style={{ color: getColorForZone(5) }}>Z5:</span> VO2 Max
+              (&gt;106% FTP or very hard pace)
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <div className="place-self-center xl:w-11/12 w-full overflow-x-auto mb-10">
         <div className="flex h-20 rounded">
           {parsedBlocks.map((block, index) => {
             // Calculate width in pixels based on duration. e.g., 10px per minute
@@ -86,7 +115,6 @@ export function TrainingPlanTimeline({
               100 *
               displayWorkoutZoom;
 
-            console.log(widthInPixels);
             return (
               <div
                 data-tooltip-id={"my-tooltip"}
@@ -104,7 +132,7 @@ export function TrainingPlanTimeline({
               >
                 <div className="p-2">
                   <div className="font-bold text-sm text-white">
-                    {block.name || `Zone ${block.zone}`}
+                    {block.name || `Z${block.zone}`}
                   </div>
                   <div className="text-sm text-white">{block.duration} min</div>
                 </div>

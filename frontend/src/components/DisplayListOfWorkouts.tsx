@@ -1,5 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import questionInfo from "../assets/google-icon-info.svg";
 
 export function DisplayListOfWorkouts() {
   const navigate = useNavigate();
@@ -81,6 +83,7 @@ export function DisplayListOfWorkouts() {
                     // Calculate percentage width based on duration
                     const widthPercentage =
                       (block.duration / parsedDuration.totalDuration) * 100;
+
                     return (
                       <div
                         key={index}
@@ -97,14 +100,67 @@ export function DisplayListOfWorkouts() {
                       >
                         <div className="p-2">
                           <div className="font-bold  text-sm">
-                            {block.name || `Zone ${block.zone}`}
+                            {block.name || `Z${block.zone}`}
                           </div>
-                          <div className="text-sm">{block.duration} min</div>
+                          {/* <div className="text-sm">{block.duration} min</div> */}
                         </div>
                       </div>
                     );
                   })}
                 </div>
+
+                <Tooltip id="my-tooltip" />
+
+                <section className="flex flex-row  ms-20">
+                  <div className="flex mb-4 "></div>
+                  <h2 className="text-lg font-semibold mb-2">
+                    Training Zones{" "}
+                    <div className="tooltip">
+                      <div className="tooltip-content">
+                        <ul className="text-white text-sm text-start">
+                          <li>
+                            <span style={{ color: getColorForZone(1) }}>
+                              Z1:
+                            </span>{" "}
+                            Recovery (≤55% FTP or very easy pace)
+                          </li>
+                          <li>
+                            <span style={{ color: getColorForZone(2) }}>
+                              Z2:
+                            </span>{" "}
+                            Endurance (56-75% FTP or easy pace)
+                          </li>
+                          <li>
+                            <span style={{ color: getColorForZone(3) }}>
+                              Z3:
+                            </span>{" "}
+                            Tempo (76-90% FTP or moderate pace)
+                          </li>
+                          <li>
+                            <span style={{ color: getColorForZone(4) }}>
+                              Z4:
+                            </span>{" "}
+                            Threshold (91-105% FTP or hard pace)
+                          </li>
+                          <li>
+                            <span style={{ color: getColorForZone(5) }}>
+                              Z5:
+                            </span>{" "}
+                            VO2 Max (&gt;106% FTP or very hard pace)
+                          </li>
+                        </ul>
+                      </div>
+
+                      <img
+                        style={{ cursor: "pointer" }} // Inline style for cursor
+                        src={questionInfo}
+                        alt="info"
+                        className="inline w-8 h-8 ml-2"
+                      />
+                    </div>
+                  </h2>
+                </section>
+
                 <button
                   onClick={() => navigate(`/workouts/${element?.id}`)}
                   className={`btn btn-primary btn-md md:btn-lg  flex place-self-center mb-4 rounded-full button-hover-effect `}
