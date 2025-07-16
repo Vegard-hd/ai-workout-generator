@@ -2,6 +2,7 @@ import { useState } from "preact/hooks";
 import { useNavigate } from "react-router-dom";
 import { LikeButton } from "./LikeButton";
 
+import { Tooltip } from "react-tooltip";
 import { MyBtn } from "./MyBtn";
 
 import { useEffect } from "preact/hooks";
@@ -44,6 +45,11 @@ export function TrainingPlanTimeline({
   const parsedTitle = JSON.parse(title);
   return (
     <>
+      <a data-tooltip-id="my-tooltip" data-tooltip-content="Hello world!">
+        ◕‿‿◕
+      </a>
+      <Tooltip id="my-tooltip" />
+
       <h1 className="text-center text-xl sm:text-3xl xl:text-5xl p-8 text-nowrap">
         {parsedTitle}
       </h1>
@@ -83,8 +89,10 @@ export function TrainingPlanTimeline({
             console.log(widthInPixels);
             return (
               <div
+                data-tooltip-id={"my-tooltip"}
+                data-tooltip-content={block.description}
                 key={index}
-                className="tooltip h-full flex-shrink-0 flex items-center justify-center text-center"
+                className="h-full flex-shrink-0 flex items-center justify-center text-center"
                 style={{
                   width: `${widthPercentage}%`,
                   backgroundColor: block.color || getColorForZone(block.zone),
