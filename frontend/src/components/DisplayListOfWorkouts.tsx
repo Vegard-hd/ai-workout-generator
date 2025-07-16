@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-import questionInfo from "../assets/google-icon-info.svg?sha256=BsI/jr4OA3oxj0EFzl6AANhrUreCKpUm6DpV44Z6UFY=";
 
 export function DisplayListOfWorkouts() {
   const navigate = useNavigate();
@@ -113,7 +112,7 @@ export function DisplayListOfWorkouts() {
 
                 <section className="flex flex-row  ms-20">
                   <div className="flex mb-4 "></div>
-                  <h2 className="text-lg font-semibold mb-2">
+                  <h2 className="text-lg font-semibold">
                     Training Zones{" "}
                     <div className="tooltip">
                       <div className="tooltip-content">
@@ -150,13 +149,15 @@ export function DisplayListOfWorkouts() {
                           </li>
                         </ul>
                       </div>
-
-                      <img
-                        style={{ cursor: "pointer" }} // Inline style for cursor
-                        src={questionInfo}
-                        alt="info"
-                        className="inline w-8 h-8 ml-2"
-                      />
+                      <span
+                        style={{
+                          cursor: "pointer",
+                          fontSize: "30px",
+                        }}
+                        className="material-symbols-outlined inline ml-2  "
+                      >
+                        info
+                      </span>
                     </div>
                   </h2>
                 </section>
