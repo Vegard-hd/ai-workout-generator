@@ -75,6 +75,7 @@ app.use(
         // Optionally specify other directives, e.g. for styles:
         "img-src": [
           "'self'",
+          "data:",
           "https://vegardhaglund.dev",
           "https://outdoorworkoutgenerator.app",
           "https://outdoorworkoutgenerator.app/android-chrome-192x192.png",
