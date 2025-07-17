@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 
+import { DisplayTrainingZonesHelp } from "./partials/DisplayTrainingZonesHelp";
+
 export function DisplayListOfWorkouts() {
   const navigate = useNavigate();
   if (!import.meta.env.VITE_BACKEND_API_URL)
@@ -109,58 +111,7 @@ export function DisplayListOfWorkouts() {
                 </div>
 
                 <Tooltip id="my-tooltip" />
-
-                <section className="flex flex-row  ms-20">
-                  <div className="flex mb-4 "></div>
-                  <h2 className="text-lg font-semibold">
-                    Training Zones{" "}
-                    <div className="tooltip">
-                      <div className="tooltip-content">
-                        <ul className="text-white text-sm text-start">
-                          <li>
-                            <span style={{ color: getColorForZone(1) }}>
-                              Z1:
-                            </span>{" "}
-                            Recovery (≤55% FTP or very easy pace)
-                          </li>
-                          <li>
-                            <span style={{ color: getColorForZone(2) }}>
-                              Z2:
-                            </span>{" "}
-                            Endurance (56-75% FTP or easy pace)
-                          </li>
-                          <li>
-                            <span style={{ color: getColorForZone(3) }}>
-                              Z3:
-                            </span>{" "}
-                            Tempo (76-90% FTP or moderate pace)
-                          </li>
-                          <li>
-                            <span style={{ color: getColorForZone(4) }}>
-                              Z4:
-                            </span>{" "}
-                            Threshold (91-105% FTP or hard pace)
-                          </li>
-                          <li>
-                            <span style={{ color: getColorForZone(5) }}>
-                              Z5:
-                            </span>{" "}
-                            VO2 Max (&gt;106% FTP or very hard pace)
-                          </li>
-                        </ul>
-                      </div>
-                      <span
-                        style={{
-                          cursor: "pointer",
-                          fontSize: "30px",
-                        }}
-                        className="material-symbols-outlined inline ml-2  "
-                      >
-                        info
-                      </span>
-                    </div>
-                  </h2>
-                </section>
+                <DisplayTrainingZonesHelp />
 
                 <button
                   onClick={() => navigate(`/workouts/${element?.id}`)}

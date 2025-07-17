@@ -1,9 +1,8 @@
 import { useState } from "preact/hooks";
 import { useNavigate } from "react-router-dom";
 import { LikeButton } from "./LikeButton";
-
+import { DisplayTrainingZonesHelp } from "./DisplayTrainingZonesHelp";
 import { Tooltip } from "react-tooltip";
-import { MyBtn } from "./MyBtn";
 
 import { useEffect } from "preact/hooks";
 
@@ -15,13 +14,10 @@ export function TrainingPlanTimeline({
 }) {
   const navigate = useNavigate();
 
-  // const [isHovered, setIsHovered] = useState(false);
-
   const [displayWorkoutZoom, setDisplayWorkoutZoom] = useState(1);
 
   const [navigateMainPage, setNavigateMainPage] = useState(false);
 
-  const [isHovered, setIsHovered] = useState(false);
   const location = window.location.pathname.split("/").at(-1);
 
   useEffect(() => {
@@ -52,7 +48,7 @@ export function TrainingPlanTimeline({
           <h1 className="text-center text-xl sm:text-3xl xl:text-5xl text-nowrap font-semibold">
             {parsedTitle}
           </h1>
-          <ul className="list-none text-center space-y-2">
+          <ul className="list-none text-center space-y-2 mt-5">
             <li>
               <span className="font-semibold">Activity:</span>{" "}
               {parsedDetails.activity ?? "N/A"}
@@ -72,33 +68,6 @@ export function TrainingPlanTimeline({
             <li>
               <span className="font-semibold">Motivation:</span>{" "}
               {parsedDetails.motivation ?? "N/A"}
-            </li>
-          </ul>
-        </div>
-        <div className="flex flex-col place-items-end-safe">
-          <h2 className="text-sm xl:text-xl font-semibold pe-25 ">
-            Training Zones
-          </h2>
-          <ul className="text-base-content text-xs xl:text-sm text-pretty pe-10">
-            <li>
-              <span style={{ color: getColorForZone(1) }}>Z1:</span> Recovery
-              (≤55% FTP or very easy pace)
-            </li>
-            <li>
-              <span style={{ color: getColorForZone(2) }}>Z2:</span> Endurance
-              (56-75% FTP or easy pace)
-            </li>
-            <li>
-              <span style={{ color: getColorForZone(3) }}>Z3:</span> Tempo
-              (76-90% FTP or moderate pace)
-            </li>
-            <li>
-              <span style={{ color: getColorForZone(4) }}>Z4:</span> Threshold
-              (91-105% FTP or hard pace)
-            </li>
-            <li>
-              <span style={{ color: getColorForZone(5) }}>Z5:</span> VO2 Max
-              (&gt;106% FTP or very hard pace)
             </li>
           </ul>
         </div>
@@ -141,6 +110,9 @@ export function TrainingPlanTimeline({
           })}
         </div>
       </div>
+      <section className="flex justify-end  space-x-2 me-5 md:me-15 xl:me-30 pb-5">
+        <DisplayTrainingZonesHelp getColorForZone={getColorForZone} />
+      </section>
       <section className="flex justify-end mt-4 space-x-2 me-5 md:me-15 xl:me-30 pb-15">
         <button
           onClick={() => {
@@ -173,9 +145,9 @@ export function TrainingPlanTimeline({
         onClick={() => setNavigateMainPage(true)}
         style={{ cursor: "pointer" }}
         className={`
-          flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
-          bg-primary text-primary-content rounded-full button-hover-effect 
-          `}
+            flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
+            bg-primary text-primary-content rounded-full button-hover-effect 
+            `}
         type="button" // Change to type="button" to prevent form submission if it's inside a form
       >
         Generate a new workout!
