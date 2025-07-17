@@ -66,10 +66,13 @@ app.use(
           "https://required.vegardhaglund.website",
           "https://vegardhaglund.dev",
         ],
-        "styleSrc": ["'self'", "https://fonts.googleapis.com"],
+        "styleSrc": [
+          "'self'",
+          "https://fonts.googleapis.com",
+          "'unsafe-inline'",
+        ],
         "fontSrc": ["'self'", "https://fonts.gstatic.com"],
         // Optionally specify other directives, e.g. for styles:
-        "styleSrc": ["'self'"],
         "img-src": [
           "'self'",
           "https://vegardhaglund.dev",
