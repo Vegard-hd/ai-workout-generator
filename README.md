@@ -137,6 +137,4 @@ Project Link: [https://github.com/Vegard-hd/workout-generator-ai](https://github
 
 ---
 
-#### _Built with ❤️ and powered by AI_
-
 #### _Readme generated with Claude Sonnet 4_
