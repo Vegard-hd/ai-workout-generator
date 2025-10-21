@@ -89,14 +89,14 @@ export function DisplayListOfWorkouts() {
             <>
               <div
                 key={index}
-                className={`to-base-300 shadow-2xl/40 rounded-2xl xl:w-11/12 w-screen  flex flex-col place-self-center mb-10
-              
-                  `}
+                className={
+                  "to-base-300 shadow-2xl/40 rounded-2xl w-full max-w-6xl mx-auto flex flex-col mb-10"
+                }
               >
                 <h1 className="text-nowrap text-2xl md:text-3xl xl:text-4xl text-center text-base-content mb-5 mt-3">
                   {parsedTitle}
                 </h1>
-                <div className=" flex place-self-center xl:w-11/12 w-screen h-20 rounded overflow-hidden mb-10 mt-1 ">
+                <div className="flex w-full max-w-6xl mx-auto h-20 rounded overflow-hidden mb-10 mt-1 ">
                   {parsedBlocks.map((block: any, index: number) => {
                     // Calculate percentage width based on duration
                     const widthPercentage =
@@ -134,7 +134,9 @@ export function DisplayListOfWorkouts() {
                   onMouseEnter={() => handlePrefetch(element.id)}
                   onFocus={() => handlePrefetch(element.id)}
                   onClick={() => navigate(`/workouts/${element?.id}`)}
-                  className={`btn btn-primary btn-md md:btn-lg  flex place-self-center mb-4 rounded-full button-hover-effect `}
+                  className={
+                    "btn btn-primary btn-md md:btn-lg mx-auto mb-4 rounded-full button-hover-effect"
+                  }
                 >
                   View details
                 </button>

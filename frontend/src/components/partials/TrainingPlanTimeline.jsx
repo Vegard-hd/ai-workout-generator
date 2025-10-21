@@ -73,7 +73,7 @@ export function TrainingPlanTimeline({
         </div>
       </section>
 
-      <div className="place-self-center xl:w-11/12 w-full overflow-x-auto mb-10">
+      <div className="w-full max-w-6xl mx-auto overflow-x-auto mb-10">
         <div className="flex h-20 rounded">
           {parsedBlocks.map((block, index) => {
             // Calculate width in pixels based on duration. e.g., 10px per minute
@@ -140,14 +140,15 @@ export function TrainingPlanTimeline({
         </button>
       </section>
 
-      <LikeButton workoutId={location} />
+      <div className="w-full flex justify-center mb-6">
+        <LikeButton workoutId={location} />
+      </div>
       <button
         onClick={() => setNavigateMainPage(true)}
         style={{ cursor: "pointer" }}
-        className={`
-            flex place-self-center mb-8 p-5 text-xl font-bold border-3 border-primary-content 
-            bg-primary text-primary-content rounded-full button-hover-effect 
-            `}
+        className={
+          "btn mb-8 pb-12 pt-4 text-xl font-bold border-3 border-primary-content bg-primary text-primary-content rounded-full button-hover-effect block mx-auto"
+        }
         type="button" // Change to type="button" to prevent form submission if it's inside a form
       >
         Generate a new workout!
