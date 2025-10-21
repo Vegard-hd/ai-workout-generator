@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
 import { DisplayTrainingZonesHelp } from "./partials/DisplayTrainingZonesHelp";
@@ -13,6 +13,18 @@ const enum Colors {
 
 export function DisplayListOfWorkouts() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const handlePrefetch = (id: string) => {
+    queryClient.prefetchQuery({
+      queryKey: ["workoutDetails", id],
+      queryFn: () =>
+        fetch(`${import.meta.env.VITE_BACKEND_API_URL}/api/workout/${id}`).then(
+          (res) => res.json()
+        ),
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    });
+  };
   if (!import.meta.env.VITE_BACKEND_API_URL)
     throw new Error("Missing env.VITE_BACKEND_API_URL  from build process");
   const getColorForZone = (zone: number): Colors => {
@@ -119,6 +131,8 @@ export function DisplayListOfWorkouts() {
                 <DisplayTrainingZonesHelp />
 
                 <button
+                  onMouseEnter={() => handlePrefetch(element.id)}
+                  onFocus={() => handlePrefetch(element.id)}
                   onClick={() => navigate(`/workouts/${element?.id}`)}
                   className={`btn btn-primary btn-md md:btn-lg  flex place-self-center mb-4 rounded-full button-hover-effect `}
                 >

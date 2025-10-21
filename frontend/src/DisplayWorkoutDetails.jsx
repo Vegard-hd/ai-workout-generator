@@ -13,6 +13,7 @@ export function DisplayWorkoutDetails() {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
       }),
+    suspense: true, // Enable Suspense
     enabled: !!workoutId, // only run if workoutID is present
   });
   if (isLoading)
