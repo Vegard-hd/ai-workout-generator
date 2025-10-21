@@ -1,7 +1,6 @@
 import { TrainingPlanTimeline } from "./components/partials/TrainingPlanTimeline";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-
 export function DisplayWorkoutDetails() {
   const { workoutId } = useParams();
 

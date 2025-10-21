@@ -1,12 +1,32 @@
-import { ConfigureWorkout } from "./components/ConfigureWorkout";
+// import { ConfigureWorkout } from "./components/ConfigureWorkout";
 
 import { DisplayListOfWorkouts } from "./components/DisplayListOfWorkouts";
 
 import { useState } from "preact/hooks";
 
+import { Suspense, lazy } from "preact/compat";
+
 import faviconImage from "../src/assets/android-chrome-192x192.png";
 
+function usePreload(importFunction) {
+  const [component, setComponent] = useState(null);
+
+  async function preload() {
+    if (!component) {
+      const { default: loadedComponent } = await importFunction();
+      setComponent(() => loadedComponent);
+    }
+  }
+
+  return [component, preload];
+}
+
 export function App() {
+  const [PreloadedComponent, preload] = usePreload(() =>
+    import("./components/ConfigureWorkout").then((module) => ({
+      default: module.ConfigureWorkout,
+    }))
+  );
   const [showCreateWorkoutOptions, setShowCreateWorkoutOptions] =
     useState(false);
 
@@ -22,6 +42,7 @@ export function App() {
       </div>
       <div className="flex justify-center items-center">
         <button
+          onMouseEnter={preload}
           onClick={() => {
             plausible("configureWorkout");
             setShowCreateWorkoutOptions(true);
@@ -52,7 +73,9 @@ export function App() {
       </h2>
 
       <section className={`${showCreateWorkoutOptions ? "" : " hidden"}`}>
-        <ConfigureWorkout />
+        <Suspense fallback={<div>..loading</div>} key="randomeky">
+          <PreloadedComponent />
+        </Suspense>
       </section>
 
       <section className="mt-15">

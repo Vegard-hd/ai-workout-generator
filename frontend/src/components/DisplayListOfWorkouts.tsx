@@ -1,22 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-
 import { DisplayTrainingZonesHelp } from "./partials/DisplayTrainingZonesHelp";
+
+const enum Colors {
+  gray = "#6B7280", // gray-500
+  blue = "#3B82F6", // blue-500
+  yellow = "#FBBF24", // yellow-400
+  orange = "#F97316", // orange-500
+  red = "#EF4444", // red-500
+}
 
 export function DisplayListOfWorkouts() {
   const navigate = useNavigate();
   if (!import.meta.env.VITE_BACKEND_API_URL)
     throw new Error("Missing env.VITE_BACKEND_API_URL  from build process");
-  const getColorForZone = (zone: number) => {
-    const colors = {
-      1: "#6B7280", // gray-500
-      2: "#3B82F6", // blue-500
-      3: "#FBBF24", // yellow-400
-      4: "#F97316", // orange-500
-      5: "#EF4444", // red-500
-    };
-    return colors[zone] || "#D1D5DB"; // Default gray-300
+  const getColorForZone = (zone: number): Colors => {
+    if (zone === 1) return Colors.gray;
+    if (zone === 2) return Colors.blue;
+    if (zone === 3) return Colors.yellow;
+    if (zone === 4) return Colors.orange;
+    if (zone === 5) return Colors.red;
+    else return Colors.gray;
   };
 
   const { isPending, isError, data, error } = useQuery({
@@ -63,7 +68,7 @@ export function DisplayListOfWorkouts() {
             title: string;
             id: string;
           },
-          index
+          index: number
         ) => {
           const parsedBlocks = JSON.parse(element.workout);
           const parsedDuration = JSON.parse(element.duration);
@@ -80,7 +85,7 @@ export function DisplayListOfWorkouts() {
                   {parsedTitle}
                 </h1>
                 <div className=" flex place-self-center xl:w-11/12 w-screen h-20 rounded overflow-hidden mb-10 mt-1 ">
-                  {parsedBlocks.map((block, index) => {
+                  {parsedBlocks.map((block: any, index: number) => {
                     // Calculate percentage width based on duration
                     const widthPercentage =
                       (block.duration / parsedDuration.totalDuration) * 100;

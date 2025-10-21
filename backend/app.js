@@ -115,11 +115,11 @@ app.use(static_(distDir));
 app.get("/{*splat}", (req, res, next) => {
   try {
     res.sendFile(join(distDir, "index.html"), (err) => {
-      if (err) next(err);
+      if (err) throw new Error("Failed to send index.html");
     });
   } catch (error) {
     console.warn(error);
-    throw new Error("Failed to send index.html");
+    next(error);
   }
 });
 
