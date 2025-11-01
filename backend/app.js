@@ -53,6 +53,8 @@ app.use(
           // External analytics domain
           "https://required.vegardhaglund.website",
           "https://vegardhaglund.dev",
+          // JSON-LD Structured Data
+          "'sha256-unIJsCj1fVLOj8qEXXD19c6t6ENPjbGJ2/6g9rkMXeA='",
           // Plausible window initialization script
           "'sha256-LF7NW58YpkwG+T+ZevdE8M+PYnKr/lkehTtmfJJ0B6g='",
           // Scroll tracking script
