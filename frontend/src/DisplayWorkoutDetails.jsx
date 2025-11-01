@@ -1,8 +1,33 @@
 import { TrainingPlanTimeline } from "./components/partials/TrainingPlanTimeline";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+
 export function DisplayWorkoutDetails() {
   const { workoutId } = useParams();
+
+  // Update canonical URL and meta tags dynamically
+  useEffect(() => {
+    const canonicalUrl = `https://outdoorworkoutgenerator.app/workouts/${workoutId}`;
+
+    // Update or create canonical link
+    let canonicalTag = document.querySelector('link[rel="canonical"]');
+    if (!canonicalTag) {
+      canonicalTag = document.createElement("link");
+      canonicalTag.rel = "canonical";
+      document.head.appendChild(canonicalTag);
+    }
+    canonicalTag.href = canonicalUrl;
+
+    // Update OG URL
+    let ogUrlTag = document.querySelector('meta[property="og:url"]');
+    if (!ogUrlTag) {
+      ogUrlTag = document.createElement("meta");
+      ogUrlTag.setAttribute("property", "og:url");
+      document.head.appendChild(ogUrlTag);
+    }
+    ogUrlTag.content = canonicalUrl;
+  }, [workoutId]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["workout", workoutId],

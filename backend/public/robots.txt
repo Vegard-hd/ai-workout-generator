@@ -1,0 +1,13 @@
+# Allow all bots to crawl the site
+User-agent: *
+Allow: /
+
+# Specific crawl-delay for good behavior
+Crawl-delay: 1
+
+# Disallow private API routes if any
+Disallow: /admin/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://outdoorworkoutgenerator.app/sitemap.xml

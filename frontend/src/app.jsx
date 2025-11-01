@@ -4,7 +4,7 @@ import { DisplayListOfWorkouts } from "./components/DisplayListOfWorkouts";
 
 import { useState } from "preact/hooks";
 
-import { Suspense, lazy } from "preact/compat";
+import { Suspense } from "preact/compat";
 
 import faviconImage from "../src/assets/android-chrome-192x192.png";
 
@@ -32,14 +32,20 @@ export function App() {
 
   return (
     <>
-      <div className="flex justify-center items-center ">
+      <header className="flex justify-center items-center ">
         <h1 className="text-5xl text-center">AI Workout Generator</h1>
         <div className="avatar">
           <div className="w-24 rounded-xl">
-            <img src={faviconImage} alt="Avatar" />
+            <img
+              src={faviconImage}
+              alt="AI Workout Generator - Create custom training plans with artificial intelligence"
+              loading="lazy"
+              width="96"
+              height="96"
+            />
           </div>
         </div>
-      </div>
+      </header>
       <div className="flex justify-center items-center">
         <button
           onMouseEnter={preload}
@@ -54,6 +60,7 @@ export function App() {
           
           ${showCreateWorkoutOptions ? " hidden" : ""} `}
           type="button"
+          aria-label="Create a new workout with AI"
         >
           Create new workout!
         </button>
@@ -72,13 +79,16 @@ export function App() {
         Or view the most popular workouts below:
       </h2>
 
-      <section className={`${showCreateWorkoutOptions ? "" : " hidden"}`}>
+      <section
+        className={`${showCreateWorkoutOptions ? "" : " hidden"}`}
+        aria-label="Create workout configuration"
+      >
         <Suspense fallback={<div>..loading</div>} key="randomeky">
           <PreloadedComponent />
         </Suspense>
       </section>
 
-      <section className="mt-15">
+      <section className="mt-15" aria-label="Browse popular workouts">
         <DisplayListOfWorkouts />
       </section>
     </>

@@ -53,13 +53,12 @@ app.use(
           // External analytics domain
           "https://required.vegardhaglund.website",
           "https://vegardhaglund.dev",
-          // The exact SRI hash that must match your script:
-          "'sha256-vWy/FtNaC22Y9pupfppguZSbSAYgSEtIRR8f2eutk2w='",
-
-          "'sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c='",
-          // Hash for the second inline script
-          "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='",
-          "'sha256=BsI/jr4OA3oxj0EFzl6AANhrUreCKpUm6DpV44Z6UFY='",
+          // Plausible window initialization script
+          "'sha256-LF7NW58YpkwG+T+ZevdE8M+PYnKr/lkehTtmfJJ0B6g='",
+          // Scroll tracking script
+          "'sha256-Z1zDpQ1l9NQEOR5fr420xCDi2T4RekmL1/+xR6tsBuQ='",
+          // Fonts API integrity hash
+          "'sha256-BsI/jr4OA3oxj0EFzl6AANhrUreCKpUm6DpV44Z6UFY='",
         ],
         "connectSrc": [
           "'self'",
@@ -97,6 +96,17 @@ app.use(cookieParser());
 
 // api endpoint - serve before everything else for frontend to work
 app.use("/api", indexRouter);
+
+// SEO routes - robots.txt and sitemap.xml
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.sendFile(join(__dirname, "public", "robots.txt"));
+});
+
+app.get("/sitemap.xml", (req, res) => {
+  res.type("application/xml");
+  res.sendFile(join(__dirname, "public", "sitemap.xml"));
+});
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
