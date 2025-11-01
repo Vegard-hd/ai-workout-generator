@@ -55,12 +55,10 @@ app.use(
           "https://vegardhaglund.dev",
           // JSON-LD Structured Data
           "'sha256-unIJsCj1fVLOj8qEXXD19c6t6ENPjbGJ2/6g9rkMXeA='",
-          // Plausible window initialization script
-          "'sha256-LF7NW58YpkwG+T+ZevdE8M+PYnKr/lkehTtmfJJ0B6g='",
-          // Scroll tracking script
-          "'sha256-Z1zDpQ1l9NQEOR5fr420xCDi2T4RekmL1/+xR6tsBuQ='",
-          // Fonts API integrity hash
-          "'sha256-BsI/jr4OA3oxj0EFzl6AANhrUreCKpUm6DpV44Z6UFY='",
+          // Plausible window initialization script (deployed version)
+          "'sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c='",
+          // Scroll tracking script (deployed version)
+          "'sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk='",
         ],
         "connectSrc": [
           "'self'",

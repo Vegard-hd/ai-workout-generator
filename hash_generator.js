@@ -1,42 +1,13 @@
 const crypto = require("crypto");
 
-// JSON-LD Structured Data Script
-const jsonldScript = `{
-        "@context": "https://schema.org/",
-        "@type": "WebApplication",
-        "name": "Outdoor Workout Generator",
-        "description": "Generate personalized outdoor workouts with AI. Create custom training plans, track zones, and improve your fitness with intelligent workout generation.",
-        "url": "https://outdoorworkoutgenerator.app",
-        "applicationCategory": "HealthAndFitnessApplication",
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "4.5",
-          "ratingCount": "100"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "Outdoor Workout Generator",
-          "url": "https://outdoorworkoutgenerator.app"
-        },
-        "potentialAction": {
-          "@type": "Action",
-          "target": "https://outdoorworkoutgenerator.app/",
-          "actionPlatform": ["DesktopWebPlatform", "MobileWebPlatform"],
-          "result": {
-            "@type": "Thing",
-            "description": "Generate a custom workout plan"
-          }
-        }
-      }`;
-
-// Plausible window initialization
+// Script 1: Plausible window init (exact formatting from deployed index.html)
 const plausibleScript = `window.plausible =
         window.plausible ||
         function () {
           (window.plausible.q = window.plausible.q || []).push(arguments);
         };`;
 
-// Scroll tracking script
+// Script 2: Scroll tracking (exact formatting from deployed index.html)
 const scrollScript = `let hasScrolled = false;
 
       window.addEventListener("scroll", () => {
@@ -46,10 +17,6 @@ const scrollScript = `let hasScrolled = false;
         }
       });`;
 
-const hashJsonld = crypto
-  .createHash("sha256")
-  .update(jsonldScript)
-  .digest("base64");
 const hashPlausible = crypto
   .createHash("sha256")
   .update(plausibleScript)
@@ -59,9 +26,11 @@ const hashScroll = crypto
   .update(scrollScript)
   .digest("base64");
 
-console.log("JSON-LD Structured Data:");
-console.log("sha256-" + hashJsonld);
-console.log("\nPlausible window initialization:");
+console.log("=== Generated Hashes ===");
+console.log("Plausible window initialization:");
 console.log("sha256-" + hashPlausible);
 console.log("\nScroll tracking:");
 console.log("sha256-" + hashScroll);
+console.log("\n=== Expected from CSP errors ===");
+console.log("sha256-rikP6O8OvZlYRMZkxJ9ZM9m/LxculWr4DxAXvwZAF7c=");
+console.log("sha256-aC3TtldQSJT6BYG+YLmdIrmIMN9A3u57ew6QfF5IEzk=");
