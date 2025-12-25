@@ -28,6 +28,12 @@
       content="AI workout generator, fitness training, outdoor workouts, training zones, personalized fitness"
     />
     <meta name="author" content="Outdoor Workout Generator" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta
+      name="description"
+      content="Generate personalized outdoor workouts with AI. Create custom training plans, track zones, and improve your fitness with intelligent workout generation."
+    />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
@@ -45,6 +51,7 @@
       content="https://outdoorworkoutgenerator.app/android-chrome-512x512.avif"
     />
     <meta property="og:site_name" content="Outdoor Workout Generator" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -64,6 +71,16 @@
       property="twitter:image"
       content="https://outdoorworkoutgenerator.app/android-chrome-512x512.avif"
     />
+    <!-- Additional SEO Meta Tags -->
+    <meta name="rating" content="general" />
+    <meta
+      name="image"
+      content="https://outdoorworkoutgenerator.app/android-chrome-512x512.avif"
+    />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/avif" />
+
     <meta name="mobile-web-app-capable" content="yes" />
     <!-- DNS Prefetch & Preconnect for Performance -->
     <link rel="dns-prefetch" href="https://required.vegardhaglund.website" />
@@ -74,7 +91,7 @@
 
     <!-- Stylesheets -->
     <link href="/src/index.css" rel="stylesheet" />
-    <!-- Favicon -->
+    <!-- Favicon with fallbacks -->
     <link
       rel="apple-touch-icon"
       sizes="180x180"
@@ -86,12 +103,8 @@
       sizes="32x32"
       href="/favicon-32x32.avif"
     />
-    <link
-      rel="icon"
-      type="image/avif"
-      sizes="16x16"
-      href="/favicon-16x16.avif"
-    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" href="/favicon.ico" />
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Material Symbols Font -->
