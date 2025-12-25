@@ -41,7 +41,7 @@ app.use(
   }),
 );
 
-app.use(logger(isNodeEnvProduction() ? "short" : "dev"));
+app.use(logger(isNodeEnvProduction() ? "tiny" : "dev"));
 app.use(
   helmet({
     crossOriginResourcePolicy: false,
