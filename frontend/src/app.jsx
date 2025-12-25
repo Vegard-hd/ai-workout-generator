@@ -6,7 +6,7 @@ import { useState } from "preact/hooks";
 
 import { Suspense } from "preact/compat";
 
-import faviconImage from "../src/assets/android-chrome-192x192.png";
+import faviconImage from "../src/assets/android-chrome-192x192.avif";
 
 function usePreload(importFunction) {
   const [component, setComponent] = useState(null);

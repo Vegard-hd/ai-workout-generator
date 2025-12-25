@@ -1,5 +1,5 @@
 # --- build stage ---
-FROM oven/bun:1.2.17-debian AS build
+FROM oven/bun:1.3.5-debian AS build
 
 WORKDIR /app
 
@@ -21,7 +21,7 @@ RUN bun run build
 
 
 # --- production stage ---
-FROM oven/bun:1.2.17-alpine
+FROM oven/bun:1.3.5-alpine
 WORKDIR /app
 
 # Copy only the built frontend to final image

@@ -35,7 +35,7 @@ if (!isNodeEnvProduction()) {
 
 // CORS for the favicon route
 app.use(
-  "/android-chrome-192x192.png",
+  "/android-chrome-192x192.avif",
   cors({
     origin: "https://vegardhaglund.dev",
   }),
@@ -77,7 +77,7 @@ app.use(
           "data:",
           "https://vegardhaglund.dev",
           "https://outdoorworkoutgenerator.app",
-          "https://outdoorworkoutgenerator.app/android-chrome-192x192.png",
+          "https://outdoorworkoutgenerator.app/android-chrome-192x192.avif",
         ],
       },
     },
