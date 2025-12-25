@@ -15,7 +15,7 @@ class GeminiService {
        The response should always be an array of blocks, each block having a duration and zone from 1 easy to 5 hardest and a short description.`;
       const response = await GeminiService.ai.models
         .generateContent({
-          model: "gemini-2.0-flash",
+          model: "gemini-2.5-flash",
           contents: prompt,
           config: { maxOutputTokens: 2000 },
         })
